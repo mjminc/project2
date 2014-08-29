@@ -6,43 +6,43 @@ Challenge yourself or your friends to give up a vice, and bet on your success. I
 ## Models
 
 # User
-*phone_number
-*first_name
-*last_name
-*password_digest
-*img_url
+-phone_number
+-first_name
+-last_name
+-password_digest
+-img_url
 *email
 
 ### Challenge
-*title
-*start_date
-*end_date
-*category
-*challenge_value
-*objective
-*failure_penalty_text
+-title
+-start_date
+-end_date
+-category
+-challenge_value
+-objective
+-failure_penalty_text
 
 
 ### Message
-*text
-*is_private
-*is_caught
-*is_confirmed
-*img_url
+-text
+-is_private
+-is_caught
+-is_confirmed
+-img_url
 
 ### User_challenge
-*user_id
-*role
-*balance
-*challenge_success
-*challenge_id
-*message_id
+-user_id
+-role
+-balance
+-challenge_success
+-challenge_id
+-message_id
 
 ## API's used:
-*Twilio
-*CharityFirst
-*Kiva
-*D3?
+-Twilio
+-CharityFirst
+-Kiva
+-D3?
 
 
 
