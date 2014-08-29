@@ -1,5 +1,7 @@
 # Project 2
 
+This is a test
+
 ## Description
 Challenge yourself or your friends to give up a vice, and bet on your success. I bet $100, I can give up cheese for 5 days.
 
