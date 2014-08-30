@@ -1,6 +1,5 @@
 # Project 2
 
-This is a test
 
 ## Description
 Challenge yourself or your friends to give up a vice, and bet on your success. I bet $100, I can give up cheese for 5 days.
@@ -13,7 +12,7 @@ Challenge yourself or your friends to give up a vice, and bet on your success. I
 *  last_name
 *  password_digest
 *  img_url
-*email
+*  email
 
 ### Challenge
 *  title
@@ -21,8 +20,9 @@ Challenge yourself or your friends to give up a vice, and bet on your success. I
 *  end_date
 *  category
 *  challenge_value
-*  objective
+*  charity_id
 *  failure_penalty_text
+*  status - success, fail, done
 
 
 ### Message
@@ -35,15 +35,22 @@ Challenge yourself or your friends to give up a vice, and bet on your success. I
 ### User_challenge
 *  user_id
 *  role
+*  accepted
 *  balance
 *  challenge_success
+*  video url
 *  challenge_id
 *  message_id
 
+### Roles
+*  Organizer - has admin rights to add videos, start/end challenge, could be challenger also
+*  Challenger - the one doing the abstaining
+*  Supporters - share the initial pot to give to charity, keep the challenger on track
+
 ## API's used:
 *  Twilio
-*  CharityFirst
-*  Kiva
+*  FirstGiving
+*  Amazon S3?
 *  D3?
 
 
