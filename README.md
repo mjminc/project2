@@ -23,6 +23,7 @@ Challenge yourself or your friends to give up a vice, and bet on your success. I
 *  challenge_value
 *  objective
 *  failure_penalty_text
+*  status - success, fail, done
 
 
 ### Message
@@ -37,13 +38,19 @@ Challenge yourself or your friends to give up a vice, and bet on your success. I
 *  role
 *  balance
 *  challenge_success
+*  video url
 *  challenge_id
 *  message_id
 
+### Roles
+*  Organizer - has admin rights to add videos, start/end challenge, could be challenger also
+*  Challenger - the one doing the abstaining
+*  Supporters - share the initial pot to give to charity, keep the challenger on track
+
 ## API's used:
 *  Twilio
-*  CharityFirst
-*  Kiva
+*  FirstGiving
+*  Amazon S3?
 *  D3?
 
 
