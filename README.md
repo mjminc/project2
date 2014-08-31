@@ -1,5 +1,14 @@
 # Project 2
 
+## To populate the db with ffaker stuff
+
+*  disconnect from pg commander and stop
+*  rails server
+*  run rake db:reset
+*  run rake fake:users
+*  run rake fake:messages
+*  run rake fake:challenges
+
 
 ## Description
 Challenge yourself or your friends to give up a vice, and bet on your success. I bet $100, I can give up cheese for 5 days.
