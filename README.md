@@ -25,7 +25,7 @@ User has_many challenges through User_challenges
 *  challenge_value
 *  charity_id
 *  failure_penalty_text
-*  status - success, fail, done
+*  status - success, fail, open, done
 
 Challenge has_many users through User_challenge
 Challenge has many messages
@@ -46,7 +46,7 @@ Message Belongs to Challenge
 
 ### User_challenge
 *  user_id
-*  role
+*  role - challenger, supporter
 *  accepted
 *  balance
 *  challenge_success
