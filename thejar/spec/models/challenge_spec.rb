@@ -35,7 +35,6 @@ RSpec.describe Challenge, :type => :model do
 
   it "must have an end date greater than start date" do
     challenge = Challenge.new(title: 'New', start_date: DateTime.now, end_date: DateTime.now, status: "done")
-    # challenge.should_not be_valid
-    expect(challenge.errors.size).to eql(1)
+    challenge.should_not be_valid
   end
 end
