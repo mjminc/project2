@@ -4,8 +4,8 @@ RSpec.describe Challenge, :type => :model do
   pending "add some examples to (or delete) #{__FILE__}"
 
   before :each do
-    @challenge = Challenge.create(title: 'New')
-    @user = User.create(first_name: 'Joe', last_name: 'Doe', email: 'joe@doe.com', phone_number: '+16505555555', img_url: 'some_url', password: '123456', password_confirmation: '123456')
+    @challenge = Challenge.create(title: 'New', start_date: Time.now, end_date: Time.now)
+    @user = User.create(first_name: 'Joe', last_name: 'Doe', email: 'joe@doe.com', phone_number: '+16505555555', img_url: 'some_url')
     @message = Message.create(text: 'text', is_private: true)
   end
 
@@ -21,5 +21,15 @@ RSpec.describe Challenge, :type => :model do
   it "can create a challenge with messages" do
     @challenge.messages << @message
     expect(@challenge.messages.size).to eql(1)
+  end
+
+  it "must have a start date" do
+    challenge = Challenge.new(title: 'New', end_date: Time.now)
+    challenge.should_not be_valid
+  end
+
+  it "must have an end date" do
+    challenge = Challenge.new(title: 'New', start_date: Time.now)
+    challenge.should_not be_valid
   end
 end
