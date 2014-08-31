@@ -14,6 +14,9 @@ Challenge yourself or your friends to give up a vice, and bet on your success. I
 *  img_url
 *  email
 
+User has_many messages
+User has_many challenges through User_challenges
+
 ### Challenge
 *  title
 *  start_date
@@ -24,6 +27,9 @@ Challenge yourself or your friends to give up a vice, and bet on your success. I
 *  failure_penalty_text
 *  status - success, fail, done
 
+Challenge has_many users through User_challenge
+Challenge has many messages
+
 
 ### Message
 *  text
@@ -31,6 +37,12 @@ Challenge yourself or your friends to give up a vice, and bet on your success. I
 *  is_caught
 *  is_confirmed
 *  img_url
+*  user_id
+*  challenge_id
+*  is_invitation
+
+Message Belongs to User
+Message Belongs to Challenge
 
 ### User_challenge
 *  user_id
@@ -40,7 +52,9 @@ Challenge yourself or your friends to give up a vice, and bet on your success. I
 *  challenge_success
 *  video url
 *  challenge_id
-*  message_id
+
+User_challenge belongs to User
+User_challenge belongs to Challenge
 
 ### Roles
 *  Organizer - has admin rights to add videos, start/end challenge, could be challenger also
