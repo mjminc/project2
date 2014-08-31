@@ -4,7 +4,7 @@ RSpec.describe Challenge, :type => :model do
   pending "add some examples to (or delete) #{__FILE__}"
 
   before :each do
-    @challenge = Challenge.create(title: 'New', start_date: DateTime.now, end_date: DateTime.tomorrow)
+    @challenge = Challenge.create(title: 'New', start_date: DateTime.now, end_date: DateTime.tomorrow, status: "done")
     @user = User.create(first_name: 'Joe', last_name: 'Doe', email: 'joe@doe.com', phone_number: '+16505555555', img_url: 'some_url')
     @message = Message.create(text: 'text', is_private: true)
   end
@@ -24,17 +24,17 @@ RSpec.describe Challenge, :type => :model do
   end
 
   it "must have a start date" do
-    challenge = Challenge.new(title: 'New', end_date: DateTime.now)
+    challenge = Challenge.new(title: 'New', end_date: DateTime.now, status: "done")
     challenge.should_not be_valid
   end
 
   it "must have an end date" do
-    challenge = Challenge.new(title: 'New', start_date: DateTime.now)
+    challenge = Challenge.new(title: 'New', start_date: DateTime.now, status: "done")
     challenge.should_not be_valid
   end
 
   it "must have an end date greater than start date" do
-    challenge = Challenge.new(title: 'New', start_date: DateTime.now, end_date: DateTime.now)
+    challenge = Challenge.new(title: 'New', start_date: DateTime.now, end_date: DateTime.now, status: "done")
     # challenge.should_not be_valid
     expect(challenge.errors.size).to eql(1)
   end

@@ -3,7 +3,9 @@ class Challenge < ActiveRecord::Base
   has_many :messages
   has_many :users, :through => :user_challenges
 
-  validates_presence_of :start_date, :end_date
+  validates_presence_of :start_date, :end_date, :title, :status
+  validates_inclusion_of :status, :in => ["success", "fail", "open", "done"]
+
   # validate :end_date_validation
 
   # def end_date_validation
