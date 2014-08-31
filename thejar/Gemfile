@@ -29,7 +29,7 @@ gem 'twilio-ruby'
 
 gem 'aws-sdk'
 
-gem 'money'
+gem 'money-rails'
 
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
