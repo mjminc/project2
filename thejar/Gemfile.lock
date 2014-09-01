@@ -47,6 +47,7 @@ GEM
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.2.1)
+    ffaker (1.25.0)
     handlebars_assets (0.17.1)
       execjs (>= 1.2.9)
       multi_json
@@ -87,6 +88,7 @@ GEM
       mini_portile (= 0.6.0)
     pg (0.17.1)
     polyglot (0.3.5)
+    populator (1.0.0)
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -175,12 +177,14 @@ DEPENDENCIES
   aws-sdk
   bcrypt (~> 3.1.7)
   coffee-rails (~> 4.0.0)
+  ffaker
   handlebars_assets
   jbuilder (~> 2.0)
   jquery-rails
   letter_opener
   money-rails
   pg
+  populator
   pry-rails
   rails (= 4.1.1)
   rspec-rails (~> 3.0.0)

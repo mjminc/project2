@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require bootstrap-3.2.0.min
 //= require handlebars.runtime
 //= require_tree ./templates
 //= require_tree .
