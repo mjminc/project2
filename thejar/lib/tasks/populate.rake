@@ -48,7 +48,7 @@
         c.challenge_amount = rand(100) + 1
         c.charity_id = ''
         c.status = STATUSES.sample
-        c.title = Faker::HipsterIpsum.paragraph(sentence_count=1)
+        c.title = Faker::HipsterIpsum.sentence(word_count=3)
       end
     end
 

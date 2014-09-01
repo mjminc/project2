@@ -6,7 +6,7 @@ class ChallengesController < ApplicationController
   def show
     user_id = params[:user_id]
     c_id = params[:id]
-    @challenge = User.find_by_id(user_id).challenge.find_by_id(c_id)
+    @challenge = User.find_by_id(user_id).challenges.find_by_id(c_id)
   end
 
   def new
