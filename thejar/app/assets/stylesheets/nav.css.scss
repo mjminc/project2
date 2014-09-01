@@ -91,6 +91,10 @@ body.bootstrap-override {
   -webkit-transition: width .5s ease;
   -moz-transition: width .5s ease;
   -ms-transition: width .5s ease;
+  .user {
+    float:right;
+    color: $nav-links;
+  }
   .brand {
     float: left;
     color: $nav-links;
