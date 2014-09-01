@@ -7,8 +7,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <%= render "shared/nav" %>
+  <%= render "hero" if controller_name == 'sites' && action_name == 'index' %>
 
-<%= yield %>
+  <%= yield %>
 
 </body>
 </html>

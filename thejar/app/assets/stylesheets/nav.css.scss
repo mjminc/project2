@@ -1,0 +1,84 @@
+// colors
+$madison: rgba(44, 62, 80, 1.0);
+$hummingbird: rgba(197, 239, 247, 1.0);
+
+// breakpoints
+@mixin breakpoint($point) {
+  @if $point == large {
+    @media (max-width: 1600px) { @content; }
+  }
+  @else if $point == medium {
+    @media (max-width: 1250px) { @content; }
+  }
+  @else if $point == small {
+    @media (max-width: 650px)  { @content; }
+  }
+}
+
+.main-nav {
+  background: $madison;
+  width: 100%;
+  overflow: hidden;
+  padding: 1em;
+  transition: width .5s ease;
+  -webkit-transition: width .5s ease;
+  -moz-transition: width .5s ease;
+  -ms-transition: width .5s ease;
+  .brand {
+    float: left;
+    color: $hummingbird;
+    font-size: 1.5em;
+    margin-right: 2em;
+    @include breakpoint(small) {
+      float: none;
+    }
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    li {
+      display: inline-block;
+      height: 100%;
+      line-height: 1.5em;
+      margin-right: 1em;
+      @include breakpoint(small) {
+        display: block;
+      }
+    }
+  }
+  .toggle-nav {
+    display: none;
+    @include breakpoint(small) {
+      display: block;
+    }
+  }
+  @include breakpoint(small) {
+    width: 0;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: -30px;
+    box-shadow: 1px 0 3px #666;
+  }
+}
+.toggle-nav {
+    display: none;
+    @include breakpoint(small) {
+      display: block;
+    }
+  }
+
+.open {
+  width: 80%;
+  left: 0;
+}
+
+// when @ small screen
+// full height
+// offscreen
+// visible toggle buttons
+// width 0
+// li display block
+// change borders and bg of li
+// animate to width 80% on clicking toggle
