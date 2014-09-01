@@ -2,7 +2,10 @@ $(document).ready(function() {
 
   // toggle navigation
   var $nav = $('.main-nav');
-  $('.toggle-nav').click(function() {
-    $nav.toggleClass('open');
+  $('#open-nav').click(function() {
+    $('.main-nav').removeClass('open').addClass('open');
+  });
+  $('#close-nav').click(function() {
+    $('.main-nav').removeClass('open');
   });
 });

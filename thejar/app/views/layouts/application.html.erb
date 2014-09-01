@@ -9,8 +9,9 @@
 <body>
   <%= render "shared/nav" %>
   <%= render "hero" if controller_name == 'sites' && action_name == 'index' %>
+  <div class="container">
 
   <%= yield %>
-
+  </div><!-- /.container -->
 </body>
 </html>
