@@ -1,6 +1,7 @@
 // colors
-$madison: rgba(44, 62, 80, 1.0);
-$hummingbird: rgba(197, 239, 247, 1.0);
+$nav-bg: rgba(44, 62, 80, 1.0); // madison
+$nav-links: rgba(197, 239, 247, 1.0); // hummingbird
+
 
 // breakpoints
 @mixin breakpoint($point) {
@@ -15,8 +16,74 @@ $hummingbird: rgba(197, 239, 247, 1.0);
   }
 }
 
+body.bootstrap-override {
+  @include breakpoint(small) {
+    margin-top: 40px;
+  }
+}
+
+.header-wrapper {
+  display: none;
+  text-align: right;
+  padding: 1em;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: $nav-bg;
+  width: 100%;
+  @include breakpoint(small) {
+    display:block;
+  }
+  .header-section {
+    height: 100%;
+    display: inline-block;
+    height: 1.5em;
+    line-height: 1.5em;
+    color: $nav-links;
+    &.header-left {
+      width: 20%;
+      text-align: left;
+      padding: 0;
+      margin: 0;
+      position: absolute; // hack
+      left: 1em;
+      top: 1.25em;
+      .toggle-nav {
+        display: none;
+        margin: 0;
+        @include breakpoint(small) {
+          display: block;
+        }
+      }
+    }
+    &.header-middle {
+      width: 40%;
+      text-align: center;
+      .brand {
+        margin: 0;
+
+      }
+    }
+    &.header-right {
+      width: 20%;
+      text-align: right;
+      position: relative;
+      top: -0.25em;
+    }
+
+  }
+}
+
+.brand {
+  float: left;
+  color: $nav-links;
+  font-size: 1.5em;
+  margin-right: 2em;
+}
+
 .main-nav {
-  background: $madison;
+  background: $nav-bg;
   width: 100%;
   overflow: hidden;
   padding: 1em;
@@ -26,17 +93,21 @@ $hummingbird: rgba(197, 239, 247, 1.0);
   -ms-transition: width .5s ease;
   .brand {
     float: left;
-    color: $hummingbird;
+    color: $nav-links;
     font-size: 1.5em;
     margin-right: 2em;
     @include breakpoint(small) {
       float: none;
+      font-size: 2em;
+      margin: 1em 0 2em 1em;
     }
   }
   ul {
     margin: 0;
     padding: 0;
     list-style-type: none;
+    position: relative;
+    top: .5em;
     li {
       display: inline-block;
       height: 100%;
@@ -44,6 +115,31 @@ $hummingbird: rgba(197, 239, 247, 1.0);
       margin-right: 1em;
       @include breakpoint(small) {
         display: block;
+        border-bottom: 1px solid lighten($nav-bg, 10%);
+        width: 100%;
+        &:first-child {
+          border-top: 1px solid lighten($nav-bg, 10%);
+        }
+      }
+      a {
+        color: $nav-links;
+        text-decoration: none;
+        &:hover {
+          color: darken($nav-links, 20%);
+        }
+        @include breakpoint(small) {
+          line-height: 1.5em;
+          margin-right: 1em;
+          padding: 1em;
+          width: 100%;
+          display: block;
+        }
+        &:active {
+          @include breakpoint(small) {
+            color: darken($nav-links, 20%);
+          background: lighten($nav-bg, 10%);
+          }
+        }
       }
     }
   }
@@ -51,6 +147,9 @@ $hummingbird: rgba(197, 239, 247, 1.0);
     display: none;
     @include breakpoint(small) {
       display: block;
+      position: absolute;
+      right: 1em;
+      top: 1em;
     }
   }
   @include breakpoint(small) {
@@ -59,18 +158,15 @@ $hummingbird: rgba(197, 239, 247, 1.0);
     position: absolute;
     top: 0;
     left: -30px;
+    padding: 0;
     box-shadow: 1px 0 3px #666;
   }
 }
-.toggle-nav {
-    display: none;
-    @include breakpoint(small) {
-      display: block;
-    }
-  }
 
 .open {
   width: 80%;
+  position: fixed;
+  top: 0;
   left: 0;
 }
 
