@@ -8,6 +8,7 @@
 *  run rake fake:users
 *  run rake fake:messages
 *  run rake fake:challenges
+*  run rake fake:userchallenges
 
 
 ## Description
