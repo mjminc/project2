@@ -1,7 +1,7 @@
 
 
   desc 'Load fake data for development/testing.'
-  task :faker => ['db:setup', 'fake:users', 'fake:messages', 'fake:challenges']
+  task :faker => ['db:setup', 'fake:users', 'fake:messages', 'fake:challenges', 'fake:user_challenges']
 
   NUM_MESSAGES = 10
   NUM_CHALLENGES = 6
@@ -9,6 +9,7 @@
   START_DATE = DateTime.now - 2.weeks
   END_DATE = DateTime.now + 2.weeks
   STATUSES = ["success", "fail", "open", "done"]
+  ROLES = ["challenger", "supporter"]
 
   namespace :fake do
     require 'ffaker'
@@ -51,4 +52,21 @@
       end
     end
 
+
+    desc 'Create many to many associations'
+    task :user_challenges => :environment do |u_c|
+      u_c.user_id = rand(6) + 1
+      u_c.challenge_id = rand(6) + 1
+      u_c.role = ROLES.sample
+      u_c.accepted = Faker::Boolean.maybe
+      u_c.balance = rand(100) + 1
+    end
+
   end
+
+
+
+
+
+
+
