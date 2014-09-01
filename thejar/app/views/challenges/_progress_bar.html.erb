@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col-12-xs">
+    <h3>Challenge Progress</h3>
+    <div class="progress">
+      <div class="progress-bar progress-bar-striped active"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: <%= @duration[:pct_complete] %>%">
+        <span class="sr-only"><%= @duration[:pct_complete] %>% Complete</span>
+      </div>
+    </div>
+    <p><%= @duration[:pct_complete] %></p>
+  </div>
+</div>
