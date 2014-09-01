@@ -1,11 +1,14 @@
-$(document).ready(function() {
+$(document).on('page:load', function() {
 
+  console.log("ready event fired")
   // toggle navigation
-  var $nav = $('.main-nav');
-  $('#open-nav').click(function() {
+  $('#open-nav').click(function(e) {
+    e.preventDefault();
+    console.log('open clicked');
     $('.main-nav').removeClass('open').addClass('open');
   });
   $('#close-nav').click(function() {
     $('.main-nav').removeClass('open');
   });
+
 });
