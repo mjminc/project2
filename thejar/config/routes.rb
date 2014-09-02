@@ -10,19 +10,20 @@ Rails.application.routes.draw do
 
 
 
-  get 'messages/index'
+  # don't need these
+  # get 'messages/index'
 
-  get 'messages/show'
+  # get 'messages/show'
 
-  get 'messages/new'
+  # get 'messages/new'
 
-  get 'messages/create'
+  # get 'messages/create'
 
-  get 'messages/edit'
+  # get 'messages/edit'
 
-  get 'messages/update'
+  # get 'messages/update'
 
-  get 'messages/delete'
+  # get 'messages/delete'
 
   root to: 'sites#index'
 
