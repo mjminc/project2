@@ -22,7 +22,27 @@
   <%= render 'end_stamp' %>
 <% end %>
 
-<div class="messages"></div>
+<div class="row">
+  <div class="col-md-9">
+    <div class="messages">
 
-<div class="users"></div>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="users">
+      <h3>Challenge Team</h3>
+      <ul>
+        <% @challenge.users.each do |user| %>
+        <li>
+          <p><a class="<%= get_user_challenge_role(user, @challenge.id) %>" href="/users/<%= user.id %>"><%= user.first_name %> <%= user.last_name %></a> | <%= get_user_challenge_role(user, @challenge.id) %></p>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div><!-- /.row-->
+
+
+
 
