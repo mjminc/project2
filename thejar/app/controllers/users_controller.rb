@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
 
   def show
-    @user = User.new
+    # @user = User.new
     @current_user = session[:user_id]
   end
 
@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     check_if_new_user = User.new(new_user)
       if check_if_new_user.save
         redirect_to users_path
-      else 
+      else
         flash.now[:notice]="Can't create user"
         @user = User.new
         render 'users/new'
@@ -52,5 +52,5 @@ class UsersController < ApplicationController
     redirect_to "/"
   end
 
-  
+
 end
