@@ -7,7 +7,7 @@
     </div>
 
     <!-- calendar -->
-    <div class="progress-calendar">
+    <div id="calendar" class="progress-calendar">
 
     </div>
     <!-- /calendar -->
@@ -23,3 +23,10 @@
     </div>
   </div>
 </div>
+
+<script>
+  $('#calendar').fullCalendar({});
+  $('.progress-bar').click(function() {
+    $('.progress-calendar').toggleClass('slideOpen');
+  });
+</script>

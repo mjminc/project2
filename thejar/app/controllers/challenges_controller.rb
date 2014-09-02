@@ -1,6 +1,6 @@
 class ChallengesController < ApplicationController
 
-  # helper function
+  # helper functions
   # get user challenge role by user and challenge_id
   def get_user_challenge_role(user, challenge_id)
     role = user.user_challenges.find_by_challenge_id(challenge_id).role
@@ -25,6 +25,9 @@ class ChallengesController < ApplicationController
     @is_past = is_past
     @duration = get_duration(@challenge.start_date, @challenge.end_date)
     @messages = @challenge.messages.all
+    # calendar
+    # number of days / 7 = num of rows
+    #
   end
 
   def new

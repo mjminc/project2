@@ -15,6 +15,8 @@
 //= require turbolinks
 //= require bootstrap-3.2.0.min
 //= require video
+//= require moment.min
+//= require fullcalendar.min
 //= require handlebars.runtime
 //= require_tree ./templates
 //= require_tree .
