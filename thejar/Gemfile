@@ -27,6 +27,8 @@ gem 'handlebars_assets'
 
 gem 'twilio-ruby'
 
+gem 'figaro'
+gem 'paperclip', '4.2'
 gem 'aws-sdk'
 
 gem 'money-rails'

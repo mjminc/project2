@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
 
-  get 'sessions/new'
+  get '/login' => 'sessions#new'
+
+  post '/login' => 'sessions#create'
+
+  get '/logout' => 'sessions#destroy'
+
+  delete '/logout' => 'sessions#destroy'
+
+
 
   # don't need these
   # get 'messages/index'
@@ -14,6 +22,7 @@ Rails.application.routes.draw do
   # get 'messages/edit'
 
   # get 'messages/update'
+
 
   # get 'messages/delete'
 

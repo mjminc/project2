@@ -19,6 +19,17 @@ Rails.application.configure do
   # For large-scale production use, consider using a caching reverse proxy like nginx, varnish or squid.
   # config.action_dispatch.rack_cache = true
 
+  #config paperclip
+  config.paperclip_defaults ={
+    :storage => :s3,
+    :s3_protocol=> 'http',
+    :s3_credentials => {
+      :bucket => ENV['BUCKET_NAME'],
+      :access_key_id=> ENV['AMAZON_ACCESS_KEY_ID'],
+      :secret_access_key => ENV['AMAZON_SECRET_ACCESS_KEY']
+    }
+  }
+
   # Disable Rails's static asset server (Apache or nginx will already do this).
   config.serve_static_assets = false
 

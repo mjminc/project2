@@ -1,14 +1,14 @@
 class SessionsController < ApplicationController
   
-  def new
+  def new   
   end
 
   def create
   	@user=User.authenticate(params[:user][:email], params[:user][:password])
 
   	if @user
-  		session[:user_id]= @user.user_id
-  		redirect_to login_url, notice: "logged in"
+  		session[:user_id]= @user.id
+  		redirect_to "/users/:id", notice: "logged in"
   	else
   		flash.now[:error] = "not logged in"
   		render :new
@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
 
   def destroy
   	session[:user_id]=nil
-  	redirect_to login_url, notice: "logged out"
+    redirect_to login_url, notice: "Session Destruction - logged out"
   end
   
 end

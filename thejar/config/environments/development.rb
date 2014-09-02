@@ -19,6 +19,17 @@ Rails.application.configure do
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
+  #config paperclip
+  config.paperclip_defaults ={
+    :storage => :s3,
+    :s3_protocol=>'http',
+    :s3_credentials => {
+      :bucket => ENV['BUCKET_NAME'],
+      :access_key_id=> ENV['AMAZON_ACCESS_KEY_ID'],
+      :secret_access_key => ENV['AMAZON_SECRET_ACCESS_KEY']
+    }
+  }
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
