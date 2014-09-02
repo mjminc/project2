@@ -23,6 +23,8 @@
         u.last_name = Faker::Name.last_name
         u.email = Faker::Internet.disposable_email('johndoe')
         u.phone_number = '+1' + Faker::PhoneNumber.short_phone_number.delete('-')
+        u.password = '123456'
+        u.password_confirmation = '123456'
       end
     end
 
