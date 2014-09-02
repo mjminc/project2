@@ -23,4 +23,19 @@ class User < ActiveRecord::Base
 		self.expires_at = 4.hours.from_now
 		self.save!
 	end
+
+	has_attached_file :avatar, styles:{
+		thumb: '100x100>',
+		square: '200x200#',
+		medium: '300x300>'
+	},
+		:bucket => ENV['BUCKET_NAME'],
+		:s3_credentials =>{
+			:access_key_id=> ENV['AMAZON_ACCESS_KEY_ID'],
+			:secret_access_key => ENV['AMAZON_SECRET_ACCESS_KEY']
+		}
+
+
+	validates_attachment_content_type :avatar, :content_type=> /\Aimage\/.*\Z/
+
 end
