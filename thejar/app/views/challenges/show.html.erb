@@ -26,6 +26,7 @@
   <div class="col-md-9">
     <div class="messages">
       <h3 class="section-header">Messages</h3>
+      <%= render "messages/new_message_form" %>
       <ul>
       <% @messages.each do |message| %>
         <% msg_user = get_user_from_message(message) %>
