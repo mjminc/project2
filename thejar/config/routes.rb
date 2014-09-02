@@ -23,6 +23,7 @@ Rails.application.routes.draw do
 
   # get 'messages/update'
 
+
   # get 'messages/delete'
 
   root to: 'sites#index'
