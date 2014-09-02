@@ -27,7 +27,7 @@ class ChallengesController < ApplicationController
     @messages = @challenge.messages.all
     # calendar
     # number of days / 7 = num of rows
-    #
+    # backburner the calendar until messages are working
   end
 
   def new

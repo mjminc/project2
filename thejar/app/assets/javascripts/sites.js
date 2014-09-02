@@ -1,4 +1,4 @@
-$(document).on('page:load', function() {
+$(document).on('ready page:load', function() {
 
   console.log("ready event fired")
   // toggle navigation
