@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
 
   	if @user
   		session[:user_id]= @user.id
-  		redirect_to login_url, notice: "logged in"
+  		redirect_to "/users/:id", notice: "logged in"
   	else
   		flash.now[:error] = "not logged in"
   		render :new
