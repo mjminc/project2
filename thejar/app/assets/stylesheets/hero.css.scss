@@ -1,0 +1,22 @@
+
+.challenges.show .container .jumbotron {
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0;
+  height: auto;
+  width: 100%;
+  .video-js {padding-top: 56.25%}
+  .vjs-fullscreen {padding-top: 0px}
+  .hero-vid {
+    width: 100%;
+  }
+  .hero-title {
+    position: absolute;
+    top: 40%;
+    left: 0;
+    color: #fff;
+    text-shadow: 1px 1px 2px #222;
+    font-size: 5em;
+  }
+}
