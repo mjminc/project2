@@ -27,6 +27,7 @@ class ChallengesController < ApplicationController
   def delete
   end
 
+
   private
 
   def is_past
