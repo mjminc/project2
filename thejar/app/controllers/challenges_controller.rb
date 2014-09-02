@@ -7,6 +7,12 @@ class ChallengesController < ApplicationController
   end
   helper_method :get_user_challenge_role
 
+  def get_user_from_message(message)
+    user = message.user
+  end
+  helper_method :get_user_from_message
+  # end helper methods
+
   def index
     @challenges = Challenge.all
   end
@@ -15,14 +21,10 @@ class ChallengesController < ApplicationController
     user_id = params[:user_id]
     c_id = params[:id]
     @challenge = User.find_by_id(user_id).challenges.find_by_id(c_id)
-    # helper to get user challenge with uid cid
-    @users = @challenge.users
-
-
     # dates
     @is_past = is_past
-    # binding.pry
     @duration = get_duration(@challenge.start_date, @challenge.end_date)
+    @messages = @challenge.messages.all
   end
 
   def new
