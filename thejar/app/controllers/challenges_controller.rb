@@ -7,6 +7,12 @@ class ChallengesController < ApplicationController
   end
   helper_method :get_user_challenge_role
 
+  def get_user_from_message(message)
+    user = message.user
+  end
+  helper_method :get_user_from_message
+  # end helper methods
+
   def index
     @challenges = Challenge.all
   end
