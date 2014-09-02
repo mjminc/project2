@@ -63,6 +63,23 @@ h3.section-header {
   }
 }
 
+// message form
+.messages form {
+  border-bottom: 1px solid lighten($divider, 50%);
+}
+.slide-down {
+  height: 0;
+  overflow: hidden;
+  transition: height .5s ease;
+  -webkit-transition: height .5s ease;
+  -moz-transition: height .5s ease;
+  -ms-transition: height .5s ease;
+  &.slide-open {
+    height: 74px;
+  }
+}
+
+
 // Users
 .users {
   ul {
