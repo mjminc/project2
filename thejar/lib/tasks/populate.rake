@@ -18,11 +18,16 @@
     # add password/password_confirmation to this when using auth
     desc 'Create some fake users'
     task :users => :environment do
-      User.populate NUM_USERS do |u|
-        u.first_name = Faker::Name.first_name
-        u.last_name = Faker::Name.last_name
-        u.email = Faker::Internet.disposable_email('johndoe')
-        u.phone_number = '+1' + Faker::PhoneNumber.short_phone_number.delete('-')
+      NUM_USERS.times do
+        User.new.tap do |u|
+          u.first_name = Faker::Name.first_name
+          u.last_name = Faker::Name.last_name
+          u.email = Faker::Internet.disposable_email()
+          u.phone_number = '+1' + Faker::PhoneNumber.short_phone_number.delete('-')
+          u.password = '123456'
+          u.password_confirmation = '123456'
+          u.save!
+        end
       end
     end
 
