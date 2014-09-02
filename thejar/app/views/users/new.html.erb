@@ -1,2 +1,20 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<h1 class="subtitle">SignUp for Challange!!</h1>
+<div class="form">
+	<%flash.each do |k,v|%>
+		<h2 id="<%=k%>"><%=v%> </h2>	
+		<% end %>
+
+	<%=form_for @user do |f| %>
+
+		<%= f.text_field :first_name, placeholder: "first name", class: "form-control"%><br>
+		<%= f.text_field :last_name, placeholder: "last name", class: "form-control"%><br>
+		<%= f.text_field :email, placeholder: "enter email", class: "form-control"%><br>
+		<%= f.text_field :image_url, placeholder: "upload cool image", class: "form-control"%><br>
+		<%= f.text_field :phone_number, placeholder: "enter phone number", class: "form-control"%><br>
+		<%= f.password_field :password, placeholder: "Password", class: "form-control"%><br>
+		<%= f.password_field :password_confirmation, placeholder: "confirm password", class: "form-control" %><br>
+		<%= f.submit "Save New User", class: "btn form-control btn-success" %>
+		
+	<% end %>
+
+</div>
