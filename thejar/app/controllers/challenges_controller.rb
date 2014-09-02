@@ -1,4 +1,12 @@
 class ChallengesController < ApplicationController
+
+  # helper function
+  # get user challenge role by user and challenge_id
+  def get_user_challenge_role(user, challenge_id)
+    role = user.user_challenges.find_by_challenge_id(challenge_id).role
+  end
+  helper_method :get_user_challenge_role
+
   def index
     @challenges = Challenge.all
   end
@@ -7,6 +15,14 @@ class ChallengesController < ApplicationController
     user_id = params[:user_id]
     c_id = params[:id]
     @challenge = User.find_by_id(user_id).challenges.find_by_id(c_id)
+    # helper to get user challenge with uid cid
+    @users = @challenge.users
+
+
+    # dates
+    @is_past = is_past
+    # binding.pry
+    @duration = get_duration(@challenge.start_date, @challenge.end_date)
   end
 
   def new
@@ -22,5 +38,24 @@ class ChallengesController < ApplicationController
   end
 
   def delete
+  end
+
+
+  private
+
+  def is_past
+    @challenge.end_date.to_datetime < DateTime.now
+  end
+
+  def get_duration(start_d, end_d)
+    start_date = start_d.to_datetime
+    end_date = end_d.to_datetime
+    today = DateTime.now
+    duration = Hash.new
+    duration[:today] = today
+    duration[:completed] = (today - start_date).to_i
+    duration[:total] = (end_date - start_date).to_i,
+    duration[:pct_complete] = (((today - start_date).to_f / (end_date - start_date).to_f) * 100).round
+    return duration
   end
 end

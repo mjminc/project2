@@ -1,4 +1,48 @@
-<h1>Challenges#show</h1>
+<div class="row">
+  <div class="col-12-xs">
+    <div class="jumbotron text-center no-padding">
 
-<h2><%= @challenge.title %></h2>
+      <video id="challenge-video" class="video-js vjs-default-skin hero-vid"
+        controls preload="auto" width="auto" height="auto"
+        poster="http://sandbox.thewikies.com/vfe-generator/images/big-buck-bunny_poster.jpg"
+        data-setup='{"example_option":true}'>
+        <source src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" type="video/mp4">
+        <source src="http://clips.vorwaerts-gmbh.de/VfE.webm" type="video/webm">
+        <source src="http://clips.vorwaerts-gmbh.de/VfE.ogv" type="video/ogg">
+        <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+      </video>
+      <h2 class="hero-title"><%= @challenge.title %></h2>
+    </div>
+  </div>
+</div>
+
+<% if !@is_past %>
+  <%= render 'progress_bar' %>
+<% else %>
+  <%= render 'end_stamp' %>
+<% end %>
+
+<div class="row">
+  <div class="col-md-9">
+    <div class="messages">
+
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="users">
+      <h3>Challenge Team</h3>
+      <ul>
+        <% @challenge.users.each do |user| %>
+        <li>
+          <p><a class="<%= get_user_challenge_role(user, @challenge.id) %>" href="/users/<%= user.id %>"><%= user.first_name %> <%= user.last_name %></a> | <%= get_user_challenge_role(user, @challenge.id) %></p>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div><!-- /.row-->
+
+
+
 

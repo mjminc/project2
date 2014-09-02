@@ -3,11 +3,12 @@
 <head>
   <title>Thejar</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body class="bootstrap-override">
+<body class="bootstrap-override <%= controller_name %> <%= controller.action_name %>">
   <%= render "shared/nav" %>
   <%= render "hero" if controller_name == 'sites' && action_name == 'index' %>
   <div class="container">

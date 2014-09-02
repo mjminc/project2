@@ -12,5 +12,6 @@
  *
  *= require_tree .
  *= require bootstrap-3.2.0.min
+ *= require video-js.min
  *= require_self
  */
