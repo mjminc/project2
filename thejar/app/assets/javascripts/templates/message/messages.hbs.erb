@@ -1,0 +1,22 @@
+
+{{#each result.message}}
+  <li class="msg fade-first">
+    <div class="row">
+      <div class="col-sm-2">
+        <div class="msg-user">
+          <img src="{{user.avatar_file_name}}" alt="Responsive image" class="img-circle img-responsive portrait">
+          <h4 class="text-center">{{user.first_name}}</h4>
+        </div>
+      </div>
+      <div class="col-sm-10">
+        <div class="msg-text text-left">
+          <p>{{message.text}}</p>
+          {{#if message.is_caught}}
+            <button class="btn btn-danger btn-small caught">Caught!</button>
+
+          {{/if}}
+        </div>
+      </div>
+    </div><!-- /.row -->
+  </li>
+{{/each}}
