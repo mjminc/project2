@@ -25,7 +25,7 @@ class UsersController < ApplicationController
   def create
 
 
-    new_user = params[:user].permit(:email,:avatar,:email_confirmation, :password, :password_confirmation, :first_name, :last_name, :phone_number)
+    new_user = params[:user].permit(:email,:avatar, :password, :password_confirmation, :first_name, :last_name, :phone_number)
     check_if_new_user = User.new(new_user)
       if check_if_new_user.save
         redirect_to users_path, :notice => "User Created!"
