@@ -26,8 +26,9 @@
   <div class="col-md-9">
     <div class="messages" data-userid="<%= @current_user.id %>" data-cid="<%= @challenge.id %>">
       <h3 class="section-header">Messages</h3>
-      <h4>Post a new message:</h4>
-      <%= render "messages/new_message_form" %>
+      <div class="messages-form-wrapper">
+        <%= render "messages/new_message_form" %>
+      </div>
       <div>
         <ul id="msg-results">
 
