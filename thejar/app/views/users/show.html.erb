@@ -3,17 +3,16 @@
 <p>Find me in app/views/users/show.html.erb</p>
 
 
+<div class="container">
+<h1 class="subtitle"><%=@user.first_name %>'s Challenge Page</h1>
 
-<h1 class="subtitle">User Show Page</h1>
+
+
+<%=@user.first_name %>
 
 
 <%=image_tag @user.avatar.url(:square)%>
 <%end%>
 
 
-
-
-
-
-
-
+</div>
