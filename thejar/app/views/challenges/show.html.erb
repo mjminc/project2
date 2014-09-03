@@ -27,7 +27,7 @@
     <div class="messages" data-userid="<%= @current_user.id %>" data-cid="<%= @challenge.id %>">
       <h3 class="section-header">Messages</h3>
       <%= render "messages/new_message_form" %>
-
+      <div id="msg-results"></div>
       <ul>
       <% @messages.each do |message| %>
         <% msg_user = get_user_from_message(message) %>

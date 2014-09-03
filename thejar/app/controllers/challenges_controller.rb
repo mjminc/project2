@@ -9,7 +9,8 @@ class ChallengesController < ApplicationController
   end
   helper_method :get_user_challenge_role
 
-  def get_user_from_message(message)
+  def get_user_from_message(message_id)
+    cur_message = Message.find_by_id(message_id)
     user = message.user
   end
   helper_method :get_user_from_message

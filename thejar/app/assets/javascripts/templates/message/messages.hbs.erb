@@ -1,12 +1,14 @@
+
 <ul>
-{{#each message}}
-  <% msg_user = get_user_from_message(message) %>
+
+{{#each result.message}}
+  <% user = get_user_from_message()
   <li class="msg">
     <div class="row">
       <div class="col-sm-2">
         <div class="msg-user">
-          <img src="{{avatar}}" alt="Responsive image" class="img-circle img-responsive portrait">
-          <h4 class="text-center">{{first_name}}</h4>
+          <img src="" alt="Responsive image" class="img-circle img-responsive portrait">
+          <h4 class="text-center"></h4>
         </div>
       </div>
       <div class="col-sm-10">

@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
-  
-  def new   
+
+  def new
   end
 
   def create
@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
 
   	if @user
   		session[:user_id]= @user.id
-  		redirect_to "/users/:id", notice: "logged in"
+  		redirect_to @user, notice: "logged in"
   	else
   		flash.now[:error] = "not logged in"
   		render :new
@@ -20,5 +20,5 @@ class SessionsController < ApplicationController
   	session[:user_id]=nil
     redirect_to login_url, notice: "Session Destruction - logged out"
   end
-  
+
 end
