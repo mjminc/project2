@@ -4,12 +4,19 @@
     <div class="row">
       <div class="col-sm-2">
         <div class="msg-user">
-          <img src="" alt="Responsive image" class="img-circle img-responsive portrait">
+          <img src="{{user.avatar}}" alt="Responsive image" class="img-circle img-responsive portrait">
           <h4 class="text-center"></h4>
         </div>
       </div>
       <div class="col-sm-10">
-        <div class="msg-text text-left"><p>{{text}}</p></div>
+        <div class="msg-text text-left">
+          <p>{{message.text}}</p>
+          {{#if is_caught}}
+            <button class="btn btn-danger btn-small caught">Caught!</button>
+          {{else}}
+
+          {{/if}}
+        </div>
       </div>
     </div><!-- /.row -->
   </li>
