@@ -22,10 +22,20 @@ $(document).on('ready page:load', function() {
     });
   };
 
+  var getChallenge = function(user_id, challenge_id) {
+    return $.getJSON("/users/" + user_id + "/challenges/" + challenge_id, function() {});
+  };
+
   // get all messages related to this challenge
   var getMessages = function(user_id, challenge_id){
     return $.getJSON("/users/" + user_id + "/challenges/" + challenge_id + "/messages.json", function(){});
   };
+
+  $.when(getChallenge(user_id, challenge_id)).done(function(result) {
+    console.log("challenge result: ", result)
+    var compiledTemplate = HandlebarsTemplates['challenge/balance']({result: result});
+    $('#balance').append(compiledTemplate);
+  });
 
   // get messages on initial page load
   $.when(getMessages(user_id, challenge_id)).done(function(result){
