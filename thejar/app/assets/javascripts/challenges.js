@@ -34,9 +34,10 @@ $(document).on('ready page:load', function() {
         is_private: $("#message_is_private").val(),
         is_caught: $("#message_is_caught").val(),
         is_invitation: $('#message_is_invitation').val(),
-        img_url: $('#message_img_url').val()
-      },
-      challenge_id: challenge_id
+        img_url: $('#message_img_url').val(),
+        challenge_id: challenge_id
+      }
+
     };
 
     $.when(createMessage(user_id, challenge_id, message)).done(function(result){

@@ -17,14 +17,13 @@ class MessagesController < ApplicationController
   end
 
   def create
-    new_message = params.require(:message).permit(:text, :is_private, :is_caught, :is_confirmed, :is_invitation)
-    challenge_id = params[:challenge_id]
+    new_message = params.require(:message).permit(:text, :is_private, :is_caught, :is_confirmed, :is_invitation, :challenge_id)
     @user = current_user
-
-    @message = @user.messages.create(text: new_message[:text], is_private: new_message[:is_private], is_confirmed: new_message[:is_confirmed], is_caught: new_message[:is_caught], is_invitation: new_message[:is_invitation], challenge_id: challenge_id)
+    @message = @user.messages.create(new_message)
+    @message = @user.messages.last
 
     respond_to do |f|
-      f.json {render :json => {message: @message}}
+      f.json {render :json => {message: [@message]}}
       f.html
     end
   end
