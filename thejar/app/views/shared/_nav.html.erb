@@ -17,12 +17,15 @@
   <ul>
     <li> <a href="/about">About</a></li>
     <li> <a href="/contact">Contact</a></li>
+
       <% if session[:user_id]==nil %>
     <li> <a href="/users/new">Signup</a></li>
     <li> <a href="/login">Login</a></li>
       <% end %>
+
       <% if session[:user_id]!=nil %>
     <li> <a href="/logout">Logout</a></li>
+    <li> <a href="/users/<%=@user.id%>/edit">Edit</a></li>
       <% end %>
   </ul>
 </div>
