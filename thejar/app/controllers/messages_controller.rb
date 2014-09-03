@@ -1,12 +1,10 @@
 class MessagesController < ApplicationController
   def index
     @user = User.find_by_id(params[:user_id])
-    binging.pry
     @messages = @user.challenges.find_by_id(params[:challenge_id]).messages.all
 
     respond_to do |f|
-      f.json {render :json => {message: @messages}}
-      f.html
+      f.json {render json: {message: @messages}}
     end
   end
 
