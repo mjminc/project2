@@ -54,6 +54,28 @@ $(document).on('ready page:load', function() {
     })
   })
 
+  // post user challenge message to update
+  var setConfirmed = function(id, c_id, msgId) {
+    return $.ajax({
+      url: "/users/" + id + "/challenges/" + c_id + "/messages/" + msgId,
+      method: post,
+      data: {
+        message: {
+          is_caught: true
+        }
+      }
+    });
+  };
+
+  $('.caught').click(function() {
+    console.log('caught clicked')
+    var msgId = $(this).attr('data-msgId');
+    $.when(setConfirmed(user_id, challenge_id, msgId)).done(function(result) {
+      console.log(result);
+    });
+  });
+
+
   // if is_caught is true, show confirm/deny button group
   // confirm button click
     // confirm button swap for confirmed message

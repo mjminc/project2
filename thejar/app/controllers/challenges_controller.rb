@@ -23,6 +23,7 @@ class ChallengesController < ApplicationController
   def show
     user_id = params[:user_id]
     c_id = params[:id]
+    @user = User.find_by_id(params[:user_id])
     @current_user = current_user
     @challenge = User.find_by_id(user_id).challenges.find_by_id(c_id)
     # dates

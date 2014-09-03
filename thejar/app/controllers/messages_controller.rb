@@ -37,8 +37,30 @@ class MessagesController < ApplicationController
   end
 
   def update
+    # coming from is_confirmed button click
+    message_update = params.require(:message).permit(:text, :is_private, :is_caught, :is_confirmed, :is_invitation, :img_url, :challenge_id)
+    binding.pry
+    @message = Message.find_by_id(params[:id])
+    @message.update_attributes(message_update)
+
+    respond_to do |f|
+      f.json {render :json => {message: [{message: @message}]}}
+      f.html
+    end
   end
 
   def delete
   end
 end
+
+
+
+
+
+
+
+
+
+
+
+
