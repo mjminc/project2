@@ -19,14 +19,20 @@ Rails.application.configure do
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
+
   #config paperclip
+  Paperclip.options[:command_path] = "/usr/local/bin/"
+
   config.paperclip_defaults ={
     :storage => :s3,
-    :s3_protocol=>'http',
+    # :s3_protocol=>'http',
+    :url => 's3_domain_url',
+    :path => '/:class/:attachment:/:id_partition/:style/:filename',
     :s3_credentials => {
-      :bucket => ENV['BUCKET_NAME'],
+      :bucket => 'S3_thejar',
       :access_key_id=> ENV['AMAZON_ACCESS_KEY_ID'],
       :secret_access_key => ENV['AMAZON_SECRET_ACCESS_KEY']
+      # :s3_host_name => 's3-us-west-1.amazonaws.com'
     }
   }
 

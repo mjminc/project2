@@ -27,7 +27,7 @@ class UsersController < ApplicationController
 
     new_user = params[:user].permit(:email,:avatar, :password, :password_confirmation, :first_name, :last_name, :phone_number)
     check_if_new_user = User.new(new_user)
-      if check_if_new_user.save
+      if check_if_new_user.save!
         redirect_to users_path, :notice => "User Created!"
       else
         flash.now[:notice]="Can't create user"

@@ -31,9 +31,9 @@ $(document).on('ready page:load', function() {
     var message = {
       message: {
         text: $("#message_text").val(),
-        is_private: $("#message_is_private").val(),
-        is_caught: $("#message_is_caught").val(),
-        is_invitation: $('#message_is_invitation').val(),
+        is_private: $("#message_is_private").prop("checked"),
+        is_caught: $("#message_is_caught").prop("checked"),
+        is_invitation: $('#message_is_invitation').prop("checked"),
         img_url: $('#message_img_url').val(),
         challenge_id: challenge_id
       }
