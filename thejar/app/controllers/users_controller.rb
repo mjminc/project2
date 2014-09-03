@@ -1,11 +1,14 @@
 class UsersController < ApplicationController
+
+  skip_before_action :is_authenticated?, only: [:new, :create]
+
   def index
     @user = User.all.order(created_at: :desc)
   end
 
 
   def show
-    # @user = User.new
+     @user = User.find_by_id(params[:id])
     @current_user = session[:user_id]
   end
 
@@ -26,7 +29,7 @@ class UsersController < ApplicationController
     check_if_new_user = User.new(new_user)
       if check_if_new_user.save
         redirect_to users_path, :notice => "User Created!"
-      else 
+      else
         flash.now[:notice]="Can't create user"
         @user = User.new
         render 'users/new'
