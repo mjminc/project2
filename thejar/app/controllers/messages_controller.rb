@@ -17,7 +17,7 @@ class MessagesController < ApplicationController
   end
 
   def create
-    new_message = params.require(:message).permit(:text, :is_private, :is_caught, :is_confirmed, :is_invitation, :challenge_id)
+    new_message = params.require(:message).permit(:text, :is_private, :is_caught, :is_confirmed, :is_invitation, :img_url, :challenge_id)
     @user = current_user
     @message = @user.messages.create(new_message)
 
