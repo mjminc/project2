@@ -20,7 +20,6 @@ class MessagesController < ApplicationController
     new_message = params.require(:message).permit(:text, :is_private, :is_caught, :is_confirmed, :is_invitation, :challenge_id)
     @user = current_user
     @message = @user.messages.create(new_message)
-    @message = @user.messages.last
 
     respond_to do |f|
       f.json {render :json => {message: [@message]}}
