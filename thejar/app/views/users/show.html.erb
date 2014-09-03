@@ -1,9 +1,14 @@
-
+<% if session[:user_id]==@current_user %>
 <h1>Users#show</h1>
 <p>Find me in app/views/users/show.html.erb</p>
 
 
 <h1 class="subtitle">User Show Page</h1>
+
+<%=image_tag @user.avatar.url(:square)%>
+<%end%>
+
+
 
 
 
