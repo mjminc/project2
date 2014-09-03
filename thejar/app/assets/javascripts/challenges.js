@@ -39,7 +39,7 @@ $(document).on('ready page:load', function() {
       challenge_id: challenge_id
     };
 
-    $.when(createMessage(user_id, challenge_id, message)).done(function(message){
+    $.when(createMessage(user_id, challenge_id, message)).done(function(result){
       $("#message_text").val('');
       $("#message_is_private").val('');
       $("#message_is_caught").val('');
@@ -47,8 +47,8 @@ $(document).on('ready page:load', function() {
 
       console.log("returned message: ", message)
 
-      // var compiledTemplate = HandlebarsTemplates['message/messages']({result: message});
-      // $('#results').prepend(compiledTemplate);
+      var compiledTemplate = HandlebarsTemplates['message/messages']({result: result});
+      $('#msg-results').prepend(compiledTemplate);
 
     })
   })

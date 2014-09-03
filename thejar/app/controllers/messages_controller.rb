@@ -1,7 +1,7 @@
 class MessagesController < ApplicationController
   def index
     @user = User.find_by_id(params[:user_id])
-    @messages = @user.challenges.find_by_id(params[:challenge_id]).messages.all
+    @messages = @user.challenges.find_by_id(params[:challenge_id]).messages.all.order('created_at DESC')
 
     respond_to do |f|
       f.json {render json: {message: @messages}}
