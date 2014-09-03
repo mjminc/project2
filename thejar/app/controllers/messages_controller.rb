@@ -40,7 +40,6 @@ class MessagesController < ApplicationController
   def update
     # coming from is_confirmed button click
     message_update = params.require(:message).permit(:text, :is_private, :is_caught, :is_confirmed, :is_invitation, :img_url, :challenge_id)
-    binding.pry
     @message = Message.find_by_id(params[:id])
     @message.update_attributes(is_confirmed: message_update[:is_confirmed])
 

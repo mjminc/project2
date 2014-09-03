@@ -13,7 +13,7 @@ $(document).on('ready page:load', function() {
   var setConfirmed = function(id, c_id, msgId) {
     return $.ajax({
       url: "/users/" + id + "/challenges/" + c_id + "/messages/" + msgId,
-      method: 'post',
+      method: 'put',
       data: {
         message: {
           is_confirmed: true
@@ -35,12 +35,13 @@ $(document).on('ready page:load', function() {
 
     // caught button click handler
     $('.caught').click(function() {
+      var $self = $(this)
       console.log('caught clicked')
       var msgId = $(this).attr('data-msgid');
       var userId = $(this).attr('data-userid')
       $.when(setConfirmed(userId, challenge_id, msgId)).done(function(result) {
         console.log(result);
-        $(this).css('opacity', '0');
+        $self.css('opacity', '0');
       });
     });
   });
@@ -82,11 +83,12 @@ $(document).on('ready page:load', function() {
       // add caught button click handler to new message
       $('#msg-results').first().find('.caught').click(function() {
         console.log('caught clicked')
+        var $self = $(this)
         var msgId = $(this).attr('data-msgid');
         var userId = $(this).attr('data-userid')
         $.when(setConfirmed(userId, challenge_id, msgId)).done(function(result) {
           console.log(result);
-          $(this).css('opacity', '0');
+          $self.css('opacity', '0');
         });
       });
 
