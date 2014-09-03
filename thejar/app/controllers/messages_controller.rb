@@ -14,6 +14,7 @@ class MessagesController < ApplicationController
   end
 
   def show
+    @user = current_user
   end
 
   def new
@@ -41,7 +42,7 @@ class MessagesController < ApplicationController
     message_update = params.require(:message).permit(:text, :is_private, :is_caught, :is_confirmed, :is_invitation, :img_url, :challenge_id)
     binding.pry
     @message = Message.find_by_id(params[:id])
-    @message.update_attributes(message_update)
+    @message.update_attributes(is_confirmed: message_update[:is_confirmed])
 
     respond_to do |f|
       f.json {render :json => {message: [{message: @message}]}}
