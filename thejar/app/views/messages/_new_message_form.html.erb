@@ -15,6 +15,8 @@
     <%= label :img_url, "Show the proof - upload a photo" %>
     <%= f.file_field :img_url, class: "form-control" %>
   </div>
+  <%= hidden_field_tag :challenge_id, value: @challenge.id, html: {id: "challenge_id"} %>
+  <%= f.hidden_field :is_invitation, value: 0, html: {id: "message_is_invitation"} %>
   <div class="form-group">
     <%= f.submit "Send message", class: "btn btn-primary" %>
   </div>
