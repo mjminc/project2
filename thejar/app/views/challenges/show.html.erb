@@ -24,28 +24,16 @@
 
 <div class="row">
   <div class="col-md-9">
-    <div class="messages">
+    <div class="messages" data-userid="<%= @user.id %>" data-cid="<%= @challenge.id %>">
       <h3 class="section-header">Messages</h3>
-      <%= render "messages/new_message_form" %>
-      <ul>
-      <% @messages.each do |message| %>
-        <% msg_user = get_user_from_message(message) %>
-        <li class="msg">
-          <div class="row">
-            <div class="col-sm-2">
-              <div class="msg-user">
-                <img src="http://www.thesharkguys.com/wp-content/uploads/2009/02/curly.jpg" alt="Responsive image" class="img-circle img-responsive portrait">
-                <h4 class="text-center"><%= msg_user.first_name %></h4>
-              </div>
-            </div>
-            <div class="col-sm-10">
-              <div class="msg-text text-left"><p><%= message.text %></p></div>
-            </div>
-          </div><!-- /.row -->
-        </li>
-      <% end %>
+      <div class="messages-form-wrapper">
+        <%= render "messages/new_message_form" %>
+      </div>
+      <div>
+        <ul id="msg-results">
 
-      </ul>
+        </ul>
+      </div>
     </div>
   </div>
 

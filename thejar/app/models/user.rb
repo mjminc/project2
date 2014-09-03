@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   has_many :user_challenges
   has_many :challenges, :through => :user_challenges
 
+  attr_accessor :avatar
+
 	has_secure_password
 
 	validates :email, presence: true, uniqueness: true
@@ -26,12 +28,17 @@ class User < ActiveRecord::Base
 		self.save!
 	end
 
-	has_attached_file :avatar, styles:{
+	has_attached_file :avatar,
+	styles:{
 		thumb: '100x100>',
 		square: '200x200#',
 		medium: '300x300>'
 	},
 		:bucket => ENV['BUCKET_NAME'],
+		:storage => :s3,
+		# :s3_host_name => 's3-us-west-1.amazonaws.com',
+		:url => 's3_domain_url',
+    :path => '/:class/:attachment:/:id_partition/:style/:filename',
 		:s3_credentials =>{
 			:access_key_id=> ENV['AMAZON_ACCESS_KEY_ID'],
 			:secret_access_key => ENV['AMAZON_SECRET_ACCESS_KEY']

@@ -1,0 +1,29 @@
+
+{{#each result.message}}
+  <li class="msg fade-first">
+    <div class="row">
+      <div class="col-sm-2">
+        <div class="msg-user">
+          {{#if user.avatar_file_name}}
+          <img src="https://s3.amazonaws.com/S3_thejar/users/avatars%3A/000/000/0{{user.id}}/square/{{user.avatar_file_name}}" alt="Responsive image" class="img-circle img-responsive portrait">
+          {{else}}
+          <img src="http://i1.squidoocdn.com/resize/squidoo_images/400/draft_lens12567281module113505901photo_1281107549Mr._T_Pissed.png" alt="Responsive image" class="img-circle img-responsive portrait">
+          {{/if}}
+          <h4 class="text-center">{{user.first_name}}</h4>
+        </div>
+      </div>
+      <div class="col-sm-10">
+        <div class="msg-text text-left">
+          <p>{{message.text}}</p>
+          {{#if message.is_caught}}
+            {{#if message.is_confirmed}}
+              <p>You caught me.</p>
+            {{else}}
+            <button class="btn btn-danger btn-small caught" data-msgid="{{message.id}}">Caught!</button>
+            {{/if}}
+          {{/if}}
+        </div>
+      </div>
+    </div><!-- /.row -->
+  </li>
+{{/each}}
