@@ -8,24 +8,6 @@ Rails.application.routes.draw do
 
   delete '/logout' => 'sessions#destroy'
 
-
-
-  # don't need these
-  # get 'messages/index'
-
-  # get 'messages/show'
-
-  # get 'messages/new'
-
-  # get 'messages/create'
-
-  # get 'messages/edit'
-
-  # get 'messages/update'
-
-
-  # get 'messages/delete'
-
   root to: 'sites#index'
 
   get '/about', to: 'sites#about'
