@@ -32,6 +32,8 @@ Rails.application.routes.draw do
 
   get '/contact', to: 'sites#contact'
 
+  resources :passwords
+
   resources :users do
     resources :challenges do
       resources :messages
