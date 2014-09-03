@@ -1,5 +1,5 @@
 class ChallengesController < ApplicationController
-
+  before_action :is_authenticated?
   # helper functions
   # get user challenge role by user and challenge_id
   def get_user_challenge_role(user, challenge_id)
@@ -27,7 +27,7 @@ class ChallengesController < ApplicationController
     @messages = @challenge.messages.all
     # calendar
     # number of days / 7 = num of rows
-    #
+    # backburner the calendar until messages are working
   end
 
   def new
