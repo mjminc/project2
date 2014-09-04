@@ -35,11 +35,10 @@ class UsersController < ApplicationController
         if challenge_id != nil
           challenge = Challenge.find_by_id(challenge_id)
           user = User.find_by_email(new_user[:email])
-
-          @challenge.role => "supporter"
-          @challenge.is_accepted => true
+          # @challenge.role =>"supporter"
+          # @challenge.is_accepted =>true
           user.challenges << challenge
-          
+
         end
 
 
