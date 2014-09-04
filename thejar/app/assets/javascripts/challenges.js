@@ -8,6 +8,7 @@ $(document).on('ready page:load', function() {
 
   var user_id = $('.messages').attr('data-userid');
   var challenge_id = $('.messages').attr('data-cid');
+  var isOwner = $('.messages').attr('data-isOwner');
 
   // post user challenge message update
   var setConfirmed = function(id, c_id, msgId) {
@@ -86,6 +87,7 @@ $(document).on('ready page:load', function() {
     };
 
     $.when(createMessage(user_id, challenge_id, message)).done(function(result){
+
       $("#message_text").val('');
       $("#message_is_private").val('');
       $("#message_is_caught").val('');
@@ -93,7 +95,7 @@ $(document).on('ready page:load', function() {
 
       console.log("returned message: ", result)
 
-      var compiledTemplate = HandlebarsTemplates['message/messages']({result: result});
+      var compiledTemplate = HandlebarsTemplates['message/messages']({result: results});
       $('#msg-results').prepend(compiledTemplate);
 
       // add caught button click handler to new message
@@ -102,6 +104,7 @@ $(document).on('ready page:load', function() {
         var $self = $(this)
         var msgId = $(this).attr('data-msgid');
         var userId = $(this).attr('data-userid')
+
         $.when(setConfirmed(userId, challenge_id, msgId)).done(function(result) {
           console.log(result);
           $self.css('opacity', '0');

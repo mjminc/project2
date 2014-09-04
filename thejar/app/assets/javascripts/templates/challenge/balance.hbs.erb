@@ -1,6 +1,6 @@
 {{#each result.challenge}}
   {{#if supporter_amount}}
-    <div class="supporter">{{supporter_amount}}</div>
+    <div class="balance challenger">Challenge Owner Owes: <span class="money">${{supporter_amount}}</span></div>
   {{/if}}
-    <div class="challenger">${{challenge_amount}}</div>
+    <div class="balance supporters">Supporters Owe: <span class="money">${{challenge_amount}}</span></div>
 {{/each}}
