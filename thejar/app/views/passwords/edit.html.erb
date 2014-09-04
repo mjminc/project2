@@ -8,9 +8,9 @@
 			<h2 id="<% k %>"><%= v %></h2>
 	<% end %>
 
-	<%= form_for @user, :url => {:action => "update", :id => @user.id}, html=> {method => "put"} do |f|%>
+	<%= form_for @user, :url => password_url(params[:id]) do |f|%>
 	<%= f.password_field :password, placeholder: "Enter new password", class: "form-control" %><br>
-	<%= f.password_field :password_confirmation, placeholder: "Confirm new password", class="form-control"%><br>
+	<%= f.password_field :password_confirmation, placeholder: "Confirm new password", class: "form-control"%><br>
 	<%= f.submit "Reset Password", class: "btn btn-primary" %>
 
 	<% end %>
