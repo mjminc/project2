@@ -12,10 +12,11 @@
 		<%= f.text_field :first_name, placeholder: "first name", class: "form-control"%><br>
 		<%= f.text_field :last_name, placeholder: "last name", class: "form-control"%><br>
 		<%= f.text_field :email, placeholder: "enter email", class: "form-control"%><br>
+		<%= number_field_tag :challenge, nil, placeholder: "New Challenge ID", class: "form-control" %>
 
 	</div>
 
-	<div class="col-md-4 col-md-offset-1"
+	<div class="col-md-4 col-md-offset-1">
 		<%= f.file_field :avatar, placeholder: "upload cool image", class: "form-control"%><br>
 		<%= f.text_field :phone_number, placeholder: "enter phone number", class: "form-control"%><br>
 		<%= f.password_field :password, placeholder: "Password", class: "form-control"%><br>
