@@ -32,9 +32,16 @@ class UsersController < ApplicationController
     check_if_new_user = User.new(new_user)
 
       if check_if_new_user.save
-        challenge = Challenge.find_by_id(challenge_id)
-        user = User.find_by_email(new_user[:email])
-        user.challenges << challenge
+        if challenge_id != nil
+          challenge = Challenge.find_by_id(challenge_id)
+          user = User.find_by_email(new_user[:email])
+
+          @challenge.role => "supporter"
+          @challenge.is_accepted => true
+          user.challenges << challenge
+          
+        end
+
 
 
         redirect_to '/login', :notice => "User Created!"
