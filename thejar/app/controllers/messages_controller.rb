@@ -26,10 +26,10 @@ class MessagesController < ApplicationController
     new_message = params.require(:message).permit(:text, :is_private, :is_caught, :is_confirmed, :is_invitation, :img_url, :challenge_id)
     @user = current_user
     @message = @user.messages.create(new_message)
-    @message_p = Message.find_by_sql('select * from messages join "users" on messages.user_id = users.id;').last
+    @message_u = Message.find_by_sql('select * from messages join "users" on messages.user_id = users.id;').last
 
     respond_to do |f|
-      f.json {render :json => {message: [{message: @message_p}]}}
+      f.json {render :json => {message: [{message: @message_u}]}}
       f.html
     end
   end
