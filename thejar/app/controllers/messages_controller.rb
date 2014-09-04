@@ -25,7 +25,6 @@ class MessagesController < ApplicationController
   def create
     new_message = params.require(:message).permit(:text, :is_private, :is_caught, :is_confirmed, :is_invitation, :challenge_id)
     message_pic = params.permit(:msg_pic)
-    binding.pry
     @user = current_user
     @message = @user.messages.create(new_message)
     @message_u = Message.find_by_sql('select * from messages join "users" on messages.user_id = users.id;').last
