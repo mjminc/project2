@@ -1,5 +1,10 @@
 $(document).on('ready page:load', function() {
 
+  var $body = $('body');
+
+  if ($body.hasClass('show')) {
+
+
   // open file upload field in new message form
   $('.url-trigger').on('change', function() {
     console.log('triggered');
@@ -120,20 +125,60 @@ $(document).on('ready page:load', function() {
 
     });
   });
+  }
 
-  // if is_caught is true, show confirm/deny button group
-  // confirm button click
-    // confirm button swap for confirmed message
-    // change bg color of li
-    // or deny button swap for denied message
-    // update calendar?
-      // if there is an is_caught message on this date, change day style
-    // update caught slippin count, with date
-    // update challenge balance
-    // generate a caught slippin text to all participants with link to the challenge page
+  if($('body').hasClass('new')) {
 
-  // put caught slippin button on the calendar
-  // show if current_user == challenge owner
+    var getCharityCats = function() {
+      var url = 'https://api.justgiving.com/4f937edd/v1/charity/categories';
+        return $.getJSON(url, function() {});
+      };
+      var searchCharities = function(query) {
+        var url = 'https://api.justgiving.com/4f937edd/v1/charity/search?{q}=' + query;
+        return $.getJSON(url, function() {});
+      };
+
+      var getCharityByCatId = function(catId) {
+        var url = 'https://api.justgiving.com/4f937edd/v1/charity/search?{categoryid}=' + catId;
+        return $.getJSON(url, function() {});
+      };
+
+      var updateCharityResults = function() {
+        $('#charity_cats').on('change', function() {
+          console.log('charity cat selected')
+          var catId = $(this).val();
+          console.log(catId)
+          $.when(getCharityByCatId(catId)).done(function(result) {
+            console.log(result)
+            var compiledTemplate = HandlebarsTemplates['challenge/charity_results']({result: result});
+            $('#charity_results').html(compiledTemplate);
+            $('.charity-result').click(function() {
+              var curr_res = $(this).attr('data-id');
+              var name = $(this).text();
+              console.log(curr_res)
+              $('#challenge_charity').val(curr_res);
+              $('#charity_search').val(name);
+            });
+          });
+        });
+      };
+
+      $('#challenge_charity').on('change', function() {
+        var query = $(this).val();
+
+        $.when(getCharities(query)).done(function(result) {
+          console.log(result)
+        });
+      });
+
+      $.when(getCharityCats()).done(function(result){
+        console.log(result)
+        var compiledTemplate = HandlebarsTemplates['challenge/charity_cats']({result: result});
+          $('#charity_cats').html(compiledTemplate);
+
+          updateCharityResults();
+      });
+    }
 
 });
 

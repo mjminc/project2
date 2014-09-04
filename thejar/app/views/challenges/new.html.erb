@@ -1,4 +1,18 @@
 
+
+<h1>Create a New Challenge</h1>
+
+<!-- justgiving -->
+<div class="charity-form">
+<input type="text" id="charity_search">
+<input type="hidden" id="challenge_charity" name="challenge[charity]">
+<select id="charity_cats" name="challenge[charity_cat]">
+
+</select>
+</div>
+<div id="charity_results" class="charity-cats"></div>
+
+
 <h1 class="subtitle">Create a challenge</h1>
 
 <%= form_for @challenge, url: {action: 'create'}, html: {id: "new-challenge-form"} do |f| %>
@@ -32,4 +46,5 @@
     <%= f.submit "Create Challenge!", class: "btn form-control btn-success" %>
 
 <% end %>
+
 

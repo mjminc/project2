@@ -16,9 +16,7 @@
     </div>
   </div>
 </div>
-<% if @is_challenge_owner %>
-  <%= link_to "Edit this challenge", edit_user_challenge_path([@current_user.id, @challenge.id]), class: "btn btn-success", id: "edit-challenge" %>
-<% end %>
+
 <% if !@is_past %>
   <%= render 'progress_bar' %>
 <% else %>
