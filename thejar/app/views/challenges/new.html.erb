@@ -10,6 +10,11 @@
       <%=f.text_field :charity_id, placeholder: "search charities", class: "form-control"%>
     </div><br>
 
+    <div>
+      <%=label :challenge_amount, "Amount to donate"%><br>
+      <%=f.text_field :challenge_amount, placeholder: "amount to donate", class: "form-control"%>
+    </div><br>
+
      <div>
       <%= label :start_date, "Start Date" %><br>
       <%= f.date_select :start_date, placeholder: "select date", class: "form-control" %>

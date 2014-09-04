@@ -41,25 +41,28 @@ class ChallengesController < ApplicationController
 
   def new
     @challenge= Challenge.new
+    @user =User.find_by_id(params[:user_id])
+
 
   end
 
   def create
-    new_challenge =params.require(:challenge).permit(:title,:charity_id,:start_date,:end_date,:status)
-
-    new_challenge[:start_date]= new_challenge[:start_date].to_datetime
-    new_challenge[:end_date]= new_challenge[:end_date].to_datetime
-
+    new_challenge =params.require(:challenge).permit(:title,:charity_id,:start_date,:end_date,:status,:challenge_amount)
     @challenge=Challenge.create(new_challenge)
     @user = current_user
-      redirect_to user_challenges_path(@user, @challenge)
+    @user.challenges << @challenge
+    # binding.pry
+    redirect_to "/users/#{@user.id}/challenges/#{@challenge.id}"
 
   end
 
   def edit
+    @user = User.find_by_id(params[:user_id])
+
   end
 
   def update
+
   end
 
   def delete
@@ -69,6 +72,7 @@ class ChallengesController < ApplicationController
   private
 
   def is_past
+
     @challenge.end_date.to_datetime < DateTime.now
   end
 
