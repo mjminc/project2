@@ -1,17 +1,19 @@
 <% if session[:user_id]==@current_user %>
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
-
 
 <div class="container">
-<h1 class="subtitle"><%=@user.first_name %>'s Challenge Page</h1>
+	<h1 class="subtitle"><%=@user.first_name %>'s Challenge Page</h1>
 
+	<h2> <%=image_tag @user.avatar.url(:square)%><%=@user.first_name %> <%=@user.last_name %> </h2>
+	<h3>Challenges</h3>
+		<% if @user.challenges.length > 0 %>
+		<p>
+			<% @user.challenges.each do |challenge| %>
+				<h4><%= challenge.title %> <%= challenge.category %> <%=challenge.status %> <% challenge.end_date%> 
+			<% end%>
+			</h4>
+		</p>
+	<% end %>
 
-
-<%=@user.first_name %>
-
-
-<%=image_tag @user.avatar.url(:square)%>
 <%end%>
 
 
