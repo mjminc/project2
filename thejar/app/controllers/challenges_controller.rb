@@ -35,9 +35,20 @@ class ChallengesController < ApplicationController
   end
 
   def new
+    @challenge= Challenge.new
+
   end
 
   def create
+    new_challenge =params.require(:challenge).permit(:title,:charity_id,:start_date,:end_date,:status)
+
+    new_challenge[:start_date]= new_challenge[:start_date].to_datetime
+    new_challenge[:end_date]= new_challenge[:end_date].to_datetime
+
+    @challenge=Challenge.create(new_challenge)
+    @user = current_user
+      redirect_to user_challenges_path(@user, @challenge)
+
   end
 
   def edit
