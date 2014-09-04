@@ -1,4 +1,6 @@
 {{#each result.challenge}}
-<!-- <div class="supporter">{{supporter_amount}}</div> -->
+{{#if supporter_amount}}
+<div class="supporter">{{supporter_amount}}</div>
+{{/if}}
 <div class="challenger">${{challenge_amount}}</div>
 {{/each}}
