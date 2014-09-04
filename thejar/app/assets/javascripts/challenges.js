@@ -95,7 +95,7 @@ $(document).on('ready page:load', function() {
 
       console.log("returned message: ", result)
 
-      var compiledTemplate = HandlebarsTemplates['message/messages']({result: results});
+      var compiledTemplate = HandlebarsTemplates['message/messages']({result: result});
       $('#msg-results').prepend(compiledTemplate);
 
       // add caught button click handler to new message
