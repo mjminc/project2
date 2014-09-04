@@ -1,16 +1,21 @@
-<h1 class="subtitle">	Edit Yourself </h1>
-<div class="form">
+<% if session[:user_id]==@user %>
+
+<h1 class="subtitle text-center">	Edit Yourself </h1>
+	<div class="form">
 
 	<% user_path @user %>
 
+	<div class="col-md-4 col-md-offset-4">
+
 		<%= form_for @user do |f| %>
 
-		<%= f.text_field :first_name, placeholder: @user.first_name, class: "form-control"%><br>
-		<%= f.text_field :last_name, placeholder: @user.last_name, class: "form-control"%><br>
-		<%= f.text_field :email, placeholder: @user.email, class: "form-control"%><br>
-		<%= f.text_field :phone_number, placeholder: @user.phone_number, class: "form-control"%><br>
-		<%= f.file_field :avatar, placeholder: "update image", class: "form-control"%><br>
-		<%= f.submit "Update Yourself!", class: "form-control btn btn-success" %>
+			<p></p>
+			<%= f.text_field :first_name, placeholder: @user.first_name, class: "form-control"%><br>
+			<%= f.text_field :last_name, placeholder: @user.last_name, class: "form-control"%><br>
+			<%= f.text_field :email, placeholder: @user.email, class: "form-control"%><br>
+			<%= f.text_field :phone_number, placeholder: @user.phone_number, class: "form-control"%><br>
+			<%= f.file_field :avatar, placeholder: "update image", class: "form-control"%><br>
+			<%= f.submit "Update Yourself!", class: "btn form-control btn-success" %>
 
 		<% end %>
 
