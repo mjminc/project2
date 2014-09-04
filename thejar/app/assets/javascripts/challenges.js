@@ -14,6 +14,7 @@ $(document).on('ready page:load', function() {
   var user_id = $('.messages').attr('data-userid');
   var challenge_id = $('.messages').attr('data-cid');
   var isOwner = $('.messages').attr('data-isOwner');
+  var charityId = $('.charity').attr('data-charityId')
 
   // post user challenge message update
   var setConfirmed = function(id, c_id, msgId) {
@@ -31,6 +32,15 @@ $(document).on('ready page:load', function() {
   var getChallenge = function(user_id, challenge_id) {
     return $.getJSON("/users/" + user_id + "/challenges/" + challenge_id, function() {});
   };
+
+  var getCharity = function(query) {
+    var url = 'https://api.justgiving.com/4f937edd/v1/charity/search?countryCode=US&charityid=' + query;
+    return $.getJSON(url, function() {});
+  };
+  $.when(getCharity(charityId)).done(function(result) {
+    console.log("single charity: ", result)
+    $('.charity').html(result)
+  });
 
   // get all messages related to this challenge
   var getMessages = function(user_id, challenge_id){
