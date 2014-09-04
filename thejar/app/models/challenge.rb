@@ -16,4 +16,6 @@ class Challenge < ActiveRecord::Base
   #   end
   # end
 
+
+
 end
