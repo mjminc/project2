@@ -34,7 +34,7 @@ $(document).on('ready page:load', function() {
   $.when(getChallenge(user_id, challenge_id)).done(function(result) {
     console.log("challenge result: ", result)
     var compiledTemplate = HandlebarsTemplates['challenge/balance']({result: result});
-    $('#balance').append(compiledTemplate);
+    $('#balance').html(compiledTemplate);
   });
 
   // get messages on initial page load
@@ -52,6 +52,12 @@ $(document).on('ready page:load', function() {
       $.when(setConfirmed(userId, challenge_id, msgId)).done(function(result) {
         console.log(result);
         $self.css('opacity', '0');
+
+        $.when(getChallenge(user_id, challenge_id)).done(function(result) {
+            console.log("challenge result: ", result)
+            var compiledTemplate = HandlebarsTemplates['challenge/balance']({result: result});
+            $('#balance').html(compiledTemplate);
+          });
       });
     });
   });
@@ -99,7 +105,14 @@ $(document).on('ready page:load', function() {
         $.when(setConfirmed(userId, challenge_id, msgId)).done(function(result) {
           console.log(result);
           $self.css('opacity', '0');
+
+          $.when(getChallenge(user_id, challenge_id)).done(function(result) {
+            console.log("challenge result: ", result)
+            var compiledTemplate = HandlebarsTemplates['challenge/balance']({result: result});
+            $('#balance').html(compiledTemplate);
+          });
         });
+
       });
 
     });

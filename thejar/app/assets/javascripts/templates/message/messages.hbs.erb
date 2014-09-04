@@ -6,10 +6,17 @@
         <div class="msg-user">
           {{#if user.avatar_file_name}}
           <img src="https://s3.amazonaws.com/S3_thejar/users/avatars%3A/000/000/0{{user.id}}/square/{{user.avatar_file_name}}" alt="Responsive image" class="img-circle img-responsive portrait">
-          {{else}}
-          <img src="http://i1.squidoocdn.com/resize/squidoo_images/400/draft_lens12567281module113505901photo_1281107549Mr._T_Pissed.png" alt="Responsive image" class="img-circle img-responsive portrait">
-          {{/if}}
           <h4 class="text-center">{{user.first_name}}</h4>
+          {{else}}
+            {{#if message.avatar_file_name}}
+            <img src="https://s3.amazonaws.com/S3_thejar/users/avatars%3A/000/000/0{{message.user_id}}/square/{{message.avatar_file_name}}" alt="Responsive image" class="img-circle img-responsive portrait">
+            <h4 class="text-center">{{message.first_name}}</h4>
+            {{else}}
+            <img src="http://i488.photobucket.com/albums/rr242/tampa1_bucket/mr_t.jpg" alt="Responsive image" class="img-circle img-responsive portrait">
+            <h4 class="text-center">{{message.first_name}}</h4>
+            {{/if}}
+          {{/if}}
+
         </div>
       </div>
       <div class="col-sm-10">
