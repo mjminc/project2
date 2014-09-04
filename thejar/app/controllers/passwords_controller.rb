@@ -5,7 +5,7 @@ class PasswordsController < ApplicationController
 		if user
 			user.set_password_reset
 			UserMailer.password_reset(user).deliver
-			redirect_to root_url
+			# redirect_to root_url
 		end
 		redirect_to login_url, notice: "Please respond to email immediately"
 	end
@@ -17,7 +17,7 @@ class PasswordsController < ApplicationController
 
 
 	def update
-		@user = User.find(params[:id])
+		@user = User.find_by_code(params[:id])
 
 		if @user
 			update_password = params.require(:user).permit(:password, :password_confirmation)

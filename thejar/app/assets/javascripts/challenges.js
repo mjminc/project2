@@ -1,5 +1,6 @@
 $(document).on('ready page:load', function() {
 
+  // open file upload field in new message form
   $('.url-trigger').on('change', function() {
     console.log('triggered');
     $('.slide-down').toggleClass('slide-open');
@@ -8,16 +9,54 @@ $(document).on('ready page:load', function() {
   var user_id = $('.messages').attr('data-userid');
   var challenge_id = $('.messages').attr('data-cid');
 
+  // post user challenge message update
+  var setConfirmed = function(id, c_id, msgId) {
+    return $.ajax({
+      url: "/users/" + id + "/challenges/" + c_id + "/messages/" + msgId,
+      method: 'put',
+      data: {
+        message: {
+          is_confirmed: true
+        }
+      }
+    });
+  };
+
+  var getChallenge = function(user_id, challenge_id) {
+    return $.getJSON("/users/" + user_id + "/challenges/" + challenge_id, function() {});
+  };
+
+  // get all messages related to this challenge
   var getMessages = function(user_id, challenge_id){
     return $.getJSON("/users/" + user_id + "/challenges/" + challenge_id + "/messages.json", function(){});
   };
 
+  $.when(getChallenge(user_id, challenge_id)).done(function(result) {
+    console.log("challenge result: ", result)
+    var compiledTemplate = HandlebarsTemplates['challenge/balance']({result: result});
+    $('#balance').append(compiledTemplate);
+  });
+
+  // get messages on initial page load
   $.when(getMessages(user_id, challenge_id)).done(function(result){
     console.log(result);
     var compiledTemplate = HandlebarsTemplates['message/messages']({result: result});
     $('#msg-results').append(compiledTemplate);
+
+    // caught button click handler
+    $('.caught').click(function() {
+      var $self = $(this)
+      console.log('caught clicked')
+      var msgId = $(this).attr('data-msgid');
+      var userId = $(this).attr('data-userid')
+      $.when(setConfirmed(userId, challenge_id, msgId)).done(function(result) {
+        console.log(result);
+        $self.css('opacity', '0');
+      });
+    });
   });
 
+  // post to messages new
   function createMessage(id, c_id, data) {
     return $.ajax({
       method: 'post',
@@ -26,6 +65,7 @@ $(document).on('ready page:load', function() {
     });
   }
 
+  // create new message on form submit
   $("#new-msg-form").on("submit", function(e){
     e.preventDefault();
     var message = {
@@ -37,7 +77,6 @@ $(document).on('ready page:load', function() {
         img_url: $('#message_img_url').val(),
         challenge_id: challenge_id
       }
-
     };
 
     $.when(createMessage(user_id, challenge_id, message)).done(function(result){
@@ -51,8 +90,20 @@ $(document).on('ready page:load', function() {
       var compiledTemplate = HandlebarsTemplates['message/messages']({result: result});
       $('#msg-results').prepend(compiledTemplate);
 
-    })
-  })
+      // add caught button click handler to new message
+      $('#msg-results').first().find('.caught').click(function() {
+        console.log('caught clicked')
+        var $self = $(this)
+        var msgId = $(this).attr('data-msgid');
+        var userId = $(this).attr('data-userid')
+        $.when(setConfirmed(userId, challenge_id, msgId)).done(function(result) {
+          console.log(result);
+          $self.css('opacity', '0');
+        });
+      });
+
+    });
+  });
 
   // if is_caught is true, show confirm/deny button group
   // confirm button click

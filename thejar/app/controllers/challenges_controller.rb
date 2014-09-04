@@ -23,6 +23,7 @@ class ChallengesController < ApplicationController
   def show
     user_id = params[:user_id]
     c_id = params[:id]
+    @user = User.find_by_id(params[:user_id])
     @current_user = current_user
     @challenge = User.find_by_id(user_id).challenges.find_by_id(c_id)
     # dates
@@ -32,6 +33,10 @@ class ChallengesController < ApplicationController
     # calendar
     # number of days / 7 = num of rows
     # backburner the calendar until messages are working
+    respond_to do |f|
+      f.json {render :json => {challenge: [@challenge]}}
+      f.html
+    end
   end
 
   def new

@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
 
   def show
-     @user = User.find_by_id(params[:id])
+    @user = User.find_by_id(params[:id])
     @current_user = session[:user_id]
   end
 
@@ -27,8 +27,8 @@ class UsersController < ApplicationController
 
     new_user = params[:user].permit(:email,:avatar, :password, :password_confirmation, :first_name, :last_name, :phone_number)
     check_if_new_user = User.new(new_user)
-      if check_if_new_user.save!
-        redirect_to users_path, :notice => "User Created!"
+      if check_if_new_user.save
+        redirect_to '/login', :notice => "User Created!"
       else
         flash.now[:notice]="Can't create user"
         @user = User.new
@@ -48,9 +48,9 @@ class UsersController < ApplicationController
   def update
     find_user_id
 
-    updated_params = params.require(:user).permit(:email, :first_name, :last_name)
-    user.update_attributes(updated_params)
-    redirect_to user
+    updated_params = params.require(:user).permit(:email, :first_name, :last_name, :avatar)
+    @user.update_attributes(updated_params)
+    redirect_to user_path(@user)
   end
 
 
