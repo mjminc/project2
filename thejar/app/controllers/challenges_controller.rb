@@ -25,6 +25,7 @@ class ChallengesController < ApplicationController
     c_id = params[:id]
     @user = User.find_by_id(params[:user_id])
     @current_user = current_user
+    @is_challenge_owner = @user.id == @current_user.id
     @challenge = User.find_by_id(user_id).challenges.find_by_id(c_id)
     # dates
     @is_past = is_past

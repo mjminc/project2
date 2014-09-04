@@ -16,16 +16,19 @@
     </div>
   </div>
 </div>
-
+<% if @is_challenge_owner %>
+  <%= link_to "Edit this challenge", edit_user_challenge_path([@current_user.id, @challenge.id]), class: "btn btn-success", id: "edit-challenge" %>
+<% end %>
 <% if !@is_past %>
   <%= render 'progress_bar' %>
 <% else %>
+  <!-- do status check here -->
   <%= render 'end_stamp' %>
 <% end %>
 
 <div class="row">
   <div class="col-md-9">
-    <div class="messages" data-userid="<%= @user.id %>" data-cid="<%= @challenge.id %>">
+    <div class="messages isOwner<%= @is_challenge_owner %>" data-userid="<%= @user.id %>" data-cid="<%= @challenge.id %>" data-isOwner="<%= @is_challenge_owner %>">
       <h3 class="section-header">Messages</h3>
       <div class="messages-form-wrapper">
         <%= render "messages/new_message_form" %>

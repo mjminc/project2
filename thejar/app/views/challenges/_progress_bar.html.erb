@@ -11,11 +11,11 @@
     <!-- /calendar -->
 
     <div class="progress-labels">
-      <span class="progress-label start-date"><%= l @challenge.start_date, format: :long %></span>
-      <span class="progress-label end-date"><%= l @challenge.end_date, format: :long %></span>
+      <span class="progress-label start-date"><%= @challenge.start_date.strftime('%B %d, %Y')  %></span>
+      <span class="progress-label end-date"><%= @challenge.end_date.strftime('%B %d, %Y') %></span>
     </div>
     <div class="progress">
-      <div class="progress-bar progress-bar-striped active"  role="progressbar" aria-valuenow="<%= @duration[:pct_complete] %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= @duration[:pct_complete] %>%">
+      <div class="progress-bar progress-bar-danger active"  role="progressbar" aria-valuenow="<%= @duration[:pct_complete] %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= @duration[:pct_complete] %>%">
         <span class="sr-only"><%= @duration[:pct_complete] %>% Complete</span>
       </div>
     </div>
