@@ -23,8 +23,9 @@ class MessagesController < ApplicationController
   end
 
   def create
-    new_message = params.require(:message).permit(:text, :is_private, :is_caught, :is_confirmed, :is_invitation, :img_url, :challenge_id)
-
+    new_message = params.require(:message).permit(:text, :is_private, :is_caught, :is_confirmed, :is_invitation, :challenge_id)
+    message_pic = params.permit(:msg_pic)
+    binding.pry
     @user = current_user
     @message = @user.messages.create(new_message)
     @message_p = Message.find_by_sql('select * from messages join "users" on messages.user_id = users.id;').last
@@ -40,7 +41,7 @@ class MessagesController < ApplicationController
 
   def update
     # coming from is_confirmed button click
-    message_update = params.require(:message).permit(:text, :is_private, :is_caught, :is_confirmed, :is_invitation, :img_url, :challenge_id)
+    message_update = params.require(:message).permit(:text, :is_private, :is_caught, :is_confirmed, :is_invitation, :challenge_id)
     @message = Message.find_by_id(params[:id])
     @message.update_attributes(is_confirmed: message_update[:is_confirmed])
 
@@ -69,6 +70,9 @@ class MessagesController < ApplicationController
   end
 
   private
+  def message_params
+    params.require(:message).permit(:msgpic, :name)
+  end
 
   def get_balance_increment(c_amount, s_amount, days_left)
     if s_amount != nil

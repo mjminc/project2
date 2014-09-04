@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140904000014) do
+ActiveRecord::Schema.define(version: 20140904170633) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,10 @@ ActiveRecord::Schema.define(version: 20140904000014) do
     t.integer  "challenge_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "msgpic_file_name"
+    t.string   "msgpic_content_type"
+    t.integer  "msgpic_file_size"
+    t.datetime "msgpic_updated_at"
   end
 
   create_table "user_challenges", force: true do |t|
