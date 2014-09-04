@@ -1,27 +1,25 @@
-<% if session[:user_id]==@current_user %>
+<% if session[:user_id] == @current_user %>
 
-<div class="container">
-	<h1 class="subtitle"><%=@user.first_name %>'s Challenge Page</h1>
+<div class="col-md-4 offset-2">
+	<div class="header"><%=@user.first_name %>'s Challenge Page</h1>
+		<h2> <%=image_tag @user.avatar.url(:square)%><%=@user.first_name %> <%=@user.last_name %> </h2>
 
-	<h2> <%=image_tag @user.avatar.url(:square)%><%=@user.first_name %> <%=@user.last_name %> </h2>
-	<h3>Challenges</h3>
-		<% if @user.challenges.length > 0 %>
-		<p>
-			Total Number of Challenges: <%= @user.challenges.length %>
-		</p>
-
-		<p>
-			<% @user.challenges.each do |challenge| %>
-
-					<h4>Open Challenges</h4><br>
-					<h3><%= challenge.title %> <%= challenge.category %> <%=challenge.status %> <% challenge.end_date%> </h3><br>
-
-
-		<% end%>
-		</p>
-	<% end %>
-
+		<h3>Challenges</h3>
+			<% if @user.challenges.length > 0 %>
+				<p>
+					Total Number of Challenges: <%= @user.challenges.length %>
+				</p>
+			<h4>Challenges</h4><br>
+				<ul>
+					<% @user.challenges.each do |challenge| %>
+						<li class="challenges">
+							<a class="chal" href="/users/<%= @user.id %>/challenges/<%= challenge.id%>" ><%= challenge.title %> <%= challenge.category %> <%= challenge.status %></a>	
+						</li>
+					<% end%>
+				</ul>
+			<% else %>
+				<a href="/users/<%=@user.id%>/challenges/new">Create Challange</a>
+			<% end %>
+		</div>
+	</div>
 <%end%>
-
-
-</div>

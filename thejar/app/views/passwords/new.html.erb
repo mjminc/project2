@@ -1,9 +1,11 @@
 <h1 class="subtitle">Request New Password</h1>
 <div class="form">
 
-	<%= form_tag passwords_path do %>
-		<%= text_field_tag :email, nil, placeholder: "Enter valid email", class: "form-control" %><br>
-		<%= submit_tag "Click to Reset Password", class: "form-control" %><br>
-	<% end %>
+  <div class="col-md-4 col-md-offset-4">
+		<%= form_tag passwords_path do %>
+			<%= text_field_tag :email, nil, placeholder: "Enter valid email", class: "form-control" %><br>
+			<%= submit_tag "Click to Reset Password", class: "form-control" %><br>
+		<% end %>
+	</div>
 
 </div>
