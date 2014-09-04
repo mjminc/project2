@@ -1,17 +1,19 @@
-<h1 class="subtitle">Reset Password</h1>
-
+<h1 class="subtitle text-center">Reset Password</h1>
 <div class="form">
-<h2> <%= @user.first_name %> </h2>
-<h2> Reenter new password: </h2>
 
 	<% flash.each do |k,v| %>
 			<h2 id="<% k %>"><%= v %></h2>
 	<% end %>
 
-	<%= form_for @user, :url => password_url(params[:id]) do |f|%>
-	<%= f.password_field :password, placeholder: "Enter new password", class: "form-control" %><br>
-	<%= f.password_field :password_confirmation, placeholder: "Confirm new password", class: "form-control"%><br>
-	<%= f.submit "Reset Password", class: "btn btn-primary" %>
+<div class="col-md-4 col-md-offset-4">
+	<h2> <%= @user.first_name %> </h2>
+	<h2> Reenter new password: </h2>
 
+		<%= form_for @user, :url => password_url(params[:id]) do |f|%>
+		<%= f.password_field :password, placeholder: "Enter new password", class: "form-control" %><br>
+		<%= f.password_field :password_confirmation, placeholder: "Confirm new password", class: "form-control"%><br>
+		<%= f.submit "Reset Password", class: "btn btn-primary" %>
 	<% end %>
+
+	</div>
 </div>

@@ -1,6 +1,10 @@
-<h1>Challenges#index</h1>
-<ul>
-  <% @challenges.each do |challenge| %>
-  <li><%= challenge.title %></li>
-  <% end %>
-</ul>
+<% if session[:user_id] == @current_user %>
+
+	<h1>Challenges#index</h1>
+	<ul>
+	  <% @challenges.each do |challenge| %>
+	  <li><%= challenge.title %></li>
+	  <% end %>
+	</ul>
+	
+<% end %>
