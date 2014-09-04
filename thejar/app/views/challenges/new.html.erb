@@ -1,6 +1,35 @@
-<% if session[:user_id] == @current_user %>
 
-	<h1>Challenges#new</h1>
-	<p>Find me in app/views/challenges/new.html.erb</p>
-	
+<h1 class="subtitle">Create a challenge</h1>
+
+<%= form_for @challenge, url: {action: 'create'}, html: {id: "new-challenge-form"} do |f| %>
+
+    <div>
+      <%=f.text_field :title, placeholder: 'challenge name', class: "form-control"%>
+    </div><br>
+
+    <div>
+      <%=f.text_field :charity_id, placeholder: "search charities", class: "form-control"%>
+    </div><br>
+
+    <div>
+      <%=label :challenge_amount, "Amount to donate"%><br>
+      <%=f.text_field :challenge_amount, placeholder: "amount to donate", class: "form-control"%>
+    </div><br>
+
+     <div>
+      <%= label :start_date, "Start Date" %><br>
+      <%= f.date_select :start_date, placeholder: "select date", class: "form-control" %>
+    </div><br>
+
+    <div>
+      <%= label :end_date, "End Date" %><br>
+      <%= f.date_select :end_date, placeholder: "select date", class: "form-control" %>
+    </div><br>
+
+    <%=f.hidden_field :status, value: "open"%>
+
+
+    <%= f.submit "Create Challenge!", class: "btn form-control btn-success" %>
+
 <% end %>
+
