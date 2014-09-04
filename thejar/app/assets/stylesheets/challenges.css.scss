@@ -28,6 +28,17 @@ h3.section-header {
   border-bottom: 1px solid lighten($divider, 50%);
   padding-bottom: 1em;
 }
+.balances {
+  position: absolute;
+  text-align: center;
+  top: 80%;
+  width: 100%;
+  color: #fff;
+  text-shadow: 1px 1px 2px #222;
+  .challenger {
+    font-size: 4em;
+  }
+}
 
 // Calendar
 .progress-calendar {
@@ -58,6 +69,9 @@ h3.section-header {
       img.portrait {
         max-width: 80px;
         margin: 0 auto;
+      }
+      .caught {
+        transition: all 0.5s ease;
       }
     }
   }

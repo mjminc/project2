@@ -33,6 +33,10 @@ class ChallengesController < ApplicationController
     # calendar
     # number of days / 7 = num of rows
     # backburner the calendar until messages are working
+    respond_to do |f|
+      f.json {render :json => {challenge: [@challenge]}}
+      f.html
+    end
   end
 
   def new
