@@ -9,10 +9,14 @@
 	<% if session[:user_id]==@user %>
 		<%= form_for :user do |f| %>
 
+		<div class="col-md-5">
+
 			<%= f.text_field :email, placeholder: "enter email", class: "form-control" %><br>
 			<%= f.password_field :password, placeholder: "and password", class: "form-control" %><br>
-			<%= f.submit "login", class: "btn form-control btn-success" %>
+			<%= f.submit "login", class: "btn form-control btn-success" %><br>
 			<%= link_to "Forgot Password?", new_password_path %>
+
+		</div>
 
 
 		<% end %>
