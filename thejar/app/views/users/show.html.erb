@@ -12,10 +12,10 @@
 
 		<p>
 			<% @user.challenges.each do |challenge| %>
-			<% if @user.challenge.status == "open" %>
+
 					<h4>Open Challenges</h4><br>
 					<h3><%= challenge.title %> <%= challenge.category %> <%=challenge.status %> <% challenge.end_date%> </h3><br>
-			<% end %>
+
 
 		<% end%>
 		</p>
