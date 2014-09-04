@@ -7,10 +7,17 @@
 	<h3>Challenges</h3>
 		<% if @user.challenges.length > 0 %>
 		<p>
+			Total Number of Challenges: <%= @user.challenges.length %>
+		</p>
+
+		<p>
 			<% @user.challenges.each do |challenge| %>
-				<h4><%= challenge.title %> <%= challenge.category %> <%=challenge.status %> <% challenge.end_date%> 
-			<% end%>
-			</h4>
+
+					<h4>Open Challenges</h4><br>
+					<h3><%= challenge.title %> <%= challenge.category %> <%=challenge.status %> <% challenge.end_date%> </h3><br>
+
+
+		<% end%>
 		</p>
 	<% end %>
 

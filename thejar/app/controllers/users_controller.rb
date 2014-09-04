@@ -19,15 +19,24 @@ class UsersController < ApplicationController
         redirect_to root_path
     end
 
+    if params[:challenge_id] != nil
+      @challenge_id = params[:challenge_id]
+    end
   end
 
 
   def create
 
-
-    new_user = params[:user].permit(:email,:avatar, :password, :password_confirmation, :first_name, :last_name, :phone_number)
+    new_user = params[:user].permit(:email, :avatar, :password, :password_confirmation, :first_name, :last_name, :phone_number)
+    challenge_id = params[:challenge]
     check_if_new_user = User.new(new_user)
+
       if check_if_new_user.save
+        challenge = Challenge.find_by_id(challenge_id)
+        user = User.find_by_email(new_user[:email])
+        user.challenges << challenge
+
+
         redirect_to '/login', :notice => "User Created!"
       else
         flash.now[:notice]="Can't create user"
