@@ -34,7 +34,8 @@ class UsersController < ApplicationController
     check_if_new_user = User.new(new_user)
 
       if check_if_new_user.save!
-        if challenge_id != nil || challenge_id == ''
+
+        if challenge_id != nil || challenge_id != ''
           challenge = Challenge.find_by_id(challenge_id)
           user = User.find_by_email(new_user[:email])
           user.challenges << challenge
