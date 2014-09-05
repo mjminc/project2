@@ -54,7 +54,7 @@ class ChallengesController < ApplicationController
     new_challenge =params.require(:challenge).permit(:title,:charity_id,:start_date,:end_date,:status,:challenge_amount)
     phone_numbers = params[:phone_numbers].split(' ')
 
-    @challenge=Challenge.create(new_challenge)
+    @challenge = Challenge.create(new_challenge)
     puts @challenge.id
 
     @user = current_user
@@ -64,6 +64,8 @@ class ChallengesController < ApplicationController
     user_challenge = UserChallenge.where({challenge_id: @challenge.id})
     user_challenge[0].role = "challenger"
 
+    binding.pry
+
     is_new = true
     phone_numbers.each do |phone|
       if User.find_by_phone_number(phone)
@@ -71,8 +73,9 @@ class ChallengesController < ApplicationController
       else
         is_new = true
       end
-      send_text_message(phone, @challenge_id, is_new)
+      send_text_message(phone, @challenge.id, is_new)
     end
+
     redirect_to "/users/#{@user.id}/challenges/#{@challenge.id}"
 
   end
