@@ -18,6 +18,8 @@ class ChallengesController < ApplicationController
 
   def index
     @challenges = Challenge.all
+    @user = current_user
+    @current_user = current_user
   end
 
   def show
@@ -52,8 +54,11 @@ class ChallengesController < ApplicationController
     new_challenge =params.require(:challenge).permit(:title,:charity_id,:start_date,:end_date,:status,:challenge_amount)
     @challenge=Challenge.create(new_challenge)
     @user = current_user
+    @current_user = current_user
     @user.challenges << @challenge
     # binding.pry
+    # number_to_send_to = params[:number_to_send_to]
+    send_text_message("6505337957")
     redirect_to "/users/#{@user.id}/challenges/#{@challenge.id}"
 
   end
@@ -89,4 +94,25 @@ class ChallengesController < ApplicationController
     duration[:pct_complete] = (((today - start_date).to_f / (end_date - start_date).to_f) * 100).round
     return duration
   end
+
+  def send_text_message(number_to_send_to)
+
+    twilio_sid = ENV['ACCOUNT_SID']
+    twilio_token = ENV['AUTH_TOKEN']
+
+    puts "WE GETTING ANYTHING??"
+    puts twilio_sid
+    puts twilio_token
+
+    twilio_phone_number = "6502760630"
+
+    @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
+
+    @twilio_client.account.sms.messages.create(
+      :from => "16502760630",
+      :to => number_to_send_to,
+      :body => "You have been invited to join a challenge!  Go to ......blah"
+      )
+  end
+
 end

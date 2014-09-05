@@ -4,12 +4,13 @@ class UsersController < ApplicationController
 
   def index
     @user = User.all.order(created_at: :desc)
+    @current_user = current_user
   end
 
 
   def show
     @user = User.find_by_id(params[:id])
-    @current_user = session[:user_id]
+    @current_user = current_user
   end
 
 
@@ -63,7 +64,7 @@ class UsersController < ApplicationController
 
   def update
     find_user_id
-
+    @current_user = current_user
     updated_params = params.require(:user).permit(:email, :first_name, :last_name, :avatar)
     @user.update_attributes(updated_params)
     redirect_to user_path(@user)
