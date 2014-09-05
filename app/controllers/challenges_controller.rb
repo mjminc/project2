@@ -56,7 +56,7 @@ class ChallengesController < ApplicationController
 
     @challenge=Challenge.create(new_challenge)
     puts @challenge.id
-    binding.pry
+
     @user = current_user
     @current_user = current_user
     @user.challenges << @challenge
