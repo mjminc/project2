@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
 
   def new
+    puts session[:user_id]
     @challenge_id = params[:challenge_id]
   end
 
