@@ -59,6 +59,7 @@ class UsersController < ApplicationController
 
   def edit
     find_user_id
+    @current_user = current_user
 
     render :edit
   end

@@ -56,7 +56,7 @@ class ChallengesController < ApplicationController
 
     @challenge=Challenge.create(new_challenge)
     puts @challenge.id
-    binding.pry
+
     @user = current_user
     @current_user = current_user
     @user.challenges << @challenge
@@ -126,7 +126,7 @@ class ChallengesController < ApplicationController
       body = "You have been invited to join a challenge!  Go to http://localhost:3000/login?challenge_id=#{challenge_id}"
     end
 
-    binding.pry
+
 
     @twilio_client.account.sms.messages.create(
       :from => "16502760630",
