@@ -64,8 +64,6 @@ class ChallengesController < ApplicationController
     user_challenge = UserChallenge.where({challenge_id: @challenge.id})
     user_challenge[0].role = "challenger"
 
-    binding.pry
-
     is_new = true
     phone_numbers.each do |phone|
       if User.find_by_phone_number(phone)

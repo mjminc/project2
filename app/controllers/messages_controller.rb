@@ -51,7 +51,7 @@ class MessagesController < ApplicationController
     # binding.pry
     days_left = get_days_left(challenge.start_date, challenge.end_date)
     increment = get_balance_increment(c_amount, s_amount, days_left)
-    #
+
     challenge.update_attributes(challenge_amount: challenge.challenge_amount - increment)
 
     if challenge.supporter_amount
