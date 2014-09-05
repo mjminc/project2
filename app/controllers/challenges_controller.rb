@@ -60,9 +60,9 @@ class ChallengesController < ApplicationController
     @user = current_user
     @current_user = current_user
     @user.challenges << @challenge
-    binding.pry
-    user_challenge = UserChallenge.where(challenge_id: @challenge.id, user_id: @user_id)
-    user_challenge.role = "challenger"
+
+    user_challenge = UserChallenge.where({challenge_id: @challenge.id})
+    user_challenge[0].role = "challenger"
 
     is_new = true
     phone_numbers.each do |phone|

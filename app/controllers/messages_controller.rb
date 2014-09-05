@@ -75,9 +75,9 @@ class MessagesController < ApplicationController
 
   def get_balance_increment(c_amount, s_amount, days_left)
     if s_amount != nil
-      increment = (c_amount + s_amount) / (days_left / 2)
+      return increment = (c_amount + s_amount) / (days_left / 2)
     else
-      increment = c_amount / (days_left / 2)
+      return increment = c_amount / (days_left / 2)
     end
   end
 

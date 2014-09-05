@@ -12,10 +12,7 @@
     <%= f.check_box :is_caught, class: "url-trigger" %>
     <%= label :is_caught, "Caught you slippin'" %>
   </div>
-  <div class="form-group slide-down">
-    <%= label :msg_pic, "Show the proof - upload a photo" %>
-    <%= file_field_tag :msg_pic, class: "form-control" %>
-  </div>
+
   <%= f.hidden_field :challenge_id, value: @challenge.id %>
   <%= f.hidden_field :is_invitation, value: 0, html: {id: "message_is_invitation"} %>
   <div class="form-group">
