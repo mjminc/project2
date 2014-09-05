@@ -14,7 +14,7 @@
   <a id="close-nav" class="toggle-nav" href="javascript:void(0);">&laquo; Menu</a>
   <div class="brand"><a href="/">The Jar</a></div>
     <% if session[:user_id]!=nil %>
-  <div class="user"> <%= @user.first_name %></div>
+  <div class="user"> <%= @current_user.first_name %></div>
     <% end %>
   <ul>
     <li> <a href="/about">About</a></li>
@@ -26,9 +26,10 @@
       <% end %>
 
       <% if session[:user_id]!=nil %>
+    <li><a href="/users/<%= @current_user.id %>">User Profile</a></li>
+    <li> <a href="/users/<%= @current_user.id %>/edit">Edit User</a></li>
+    <li> <a href="/users/<%= @current_user.id %>/challenges/new">Create Challange</a></li>
     <li> <a href="/logout">Logout</a></li>
-    <li> <a href="/users/<%=@user.id%>/edit">Edit User</a></li>
-    <li> <a href="/users/<%=@user.id%>/challenges/new">Create Challange</a></li>
       <% end %>
   </ul>
 </div>

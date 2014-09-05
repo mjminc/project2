@@ -14,6 +14,7 @@ $(document).on('ready page:load', function() {
   var user_id = $('.messages').attr('data-userid');
   var challenge_id = $('.messages').attr('data-cid');
   var isOwner = $('.messages').attr('data-isOwner');
+  var charityId = $('.charity').attr('data-charityId')
 
   // post user challenge message update
   var setConfirmed = function(id, c_id, msgId) {
@@ -31,6 +32,15 @@ $(document).on('ready page:load', function() {
   var getChallenge = function(user_id, challenge_id) {
     return $.getJSON("/users/" + user_id + "/challenges/" + challenge_id, function() {});
   };
+
+  var getCharity = function(query) {
+    var url = 'https://api.justgiving.com/4f937edd/v1/charity/search?countryCode=US&charityid=' + query;
+    return $.getJSON(url, function() {});
+  };
+  $.when(getCharity(charityId)).done(function(result) {
+    console.log("single charity: ", result)
+    $('.charity').html(result)
+  });
 
   // get all messages related to this challenge
   var getMessages = function(user_id, challenge_id){
@@ -134,28 +144,34 @@ $(document).on('ready page:load', function() {
         return $.getJSON(url, function() {});
       };
       var searchCharities = function(query) {
-        var url = 'https://api.justgiving.com/4f937edd/v1/charity/search?{q}=' + query;
+        var url = 'https://api.justgiving.com/4f937edd/v1/charity/search?countryCode=USq=' + query;
         return $.getJSON(url, function() {});
       };
 
       var getCharityByCatId = function(catId) {
-        var url = 'https://api.justgiving.com/4f937edd/v1/charity/search?{categoryid}=' + catId;
+        var url = 'https://api.justgiving.com/4f937edd/v1/charity/search?countryCode=US&categoryid=' + catId;
         return $.getJSON(url, function() {});
       };
+
+      var displayResults = function(result) {
+        var compiledTemplate = HandlebarsTemplates['challenge/charity_results']({result: result});
+        $('#charity_results').html(compiledTemplate);
+      }
 
       var updateCharityResults = function() {
         $('#charity_cats').on('change', function() {
           console.log('charity cat selected')
           var catId = $(this).val();
-          console.log(catId)
+
           $.when(getCharityByCatId(catId)).done(function(result) {
-            console.log(result)
-            var compiledTemplate = HandlebarsTemplates['challenge/charity_results']({result: result});
-            $('#charity_results').html(compiledTemplate);
+            console.log("result:",result)
+            displayResults(result);
+
+
             $('.charity-result').click(function() {
               var curr_res = $(this).attr('data-id');
               var name = $(this).text();
-              console.log(curr_res)
+
               $('#challenge_charity').val(curr_res);
               $('#charity_search').val(name);
             });
@@ -163,13 +179,13 @@ $(document).on('ready page:load', function() {
         });
       };
 
-      $('#challenge_charity').on('change', function() {
+      $('#charity_search').on('change', function() {
         var query = $(this).val();
-
-        $.when(getCharities(query)).done(function(result) {
-          console.log(result)
+        $.when(searchCharities(query)).done(function() {
+          displayResults(result);
         });
       });
+
 
       $.when(getCharityCats()).done(function(result){
         console.log(result)
