@@ -59,7 +59,9 @@ class ChallengesController < ApplicationController
 
     @user = current_user
     @current_user = current_user
-    user_challenge = @user.challenges << @challenge
+    @user.challenges << @challenge
+    binding.pry
+    user_challenge = UserChallenge.where(challenge_id: @challenge.id, user_id: @user_id)
     user_challenge.role = "challenger"
 
     is_new = true
@@ -120,11 +122,11 @@ class ChallengesController < ApplicationController
 
     @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
 
-    body = "You have been invited to join a challenge!  Go to http://localhost:3000/users/new?challenge_id=#{challenge_id}"
+    body = "You have been invited to join a challenge!  Go to http://thejarr.herokuapp.com/users/new?challenge_id=#{challenge_id}"
     if is_new
-      body = "You have been invited to join a challenge!  Go to http://localhost:3000/users/new?challenge_id=#{challenge_id}"
+      body = "You have been invited to join a challenge!  Go to http://thejarr.herokuapp.com/users/new?challenge_id=#{challenge_id}"
     else
-      body = "You have been invited to join a challenge!  Go to http://localhost:3000/login?challenge_id=#{challenge_id}"
+      body = "You have been invited to join a challenge!  Go to http://thejarr.herokuapp.com/login?challenge_id=#{challenge_id}"
     end
 
     @twilio_client.account.sms.messages.create(
