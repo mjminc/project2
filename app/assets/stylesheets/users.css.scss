@@ -1,3 +1,32 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.users.show {
+  h2 {
+    font-size: 3em;
+    font-family: 'Changa One', sans-serif;
+  }
+  span.username {
+    display: inline-block;
+    margin-left: 1em;
+  }
+}
+.users.show ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  margin-top: 1em;
+  text-indent: 0;
+  width: 100%;
+  h4 {
+    margin-top: 2em;
+  }
+  li.challenges {
+    display: block;
+    background: #ccc;
+    margin-bottom: 1em;
+    padding: 1em;
+    width: 100%;
+  }
+}
