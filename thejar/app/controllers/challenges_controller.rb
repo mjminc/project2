@@ -52,13 +52,18 @@ class ChallengesController < ApplicationController
 
   def create
     new_challenge =params.require(:challenge).permit(:title,:charity_id,:start_date,:end_date,:status,:challenge_amount)
+    phone_numbers = params[:phone_numbers].split(' ')
+    # binding.pry
     @challenge=Challenge.create(new_challenge)
     @user = current_user
     @current_user = current_user
     @user.challenges << @challenge
     # binding.pry
     # number_to_send_to = params[:number_to_send_to]
-    send_text_message("6505337957")
+
+    phone_numbers.each do |phone|
+      send_text_message(phone)
+    end
     redirect_to "/users/#{@user.id}/challenges/#{@challenge.id}"
 
   end
