@@ -29,6 +29,7 @@ class UsersController < ApplicationController
   def create
 
     new_user = params[:user].permit(:email, :avatar, :password, :password_confirmation, :first_name, :last_name, :phone_number)
+
     challenge_id = params[:challenge]
     check_if_new_user = User.new(new_user)
 
