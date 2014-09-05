@@ -18,6 +18,8 @@ class ChallengesController < ApplicationController
 
   def index
     @challenges = Challenge.all
+    @user = current_user
+    @current_user = current_user
   end
 
   def show
@@ -52,8 +54,9 @@ class ChallengesController < ApplicationController
     new_challenge =params.require(:challenge).permit(:title,:charity_id,:start_date,:end_date,:status,:challenge_amount)
     @challenge=Challenge.create(new_challenge)
     @user = current_user
+    @current_user = current_user
     @user.challenges << @challenge
-    # binding.pry
+
     redirect_to "/users/#{@user.id}/challenges/#{@challenge.id}"
 
   end
