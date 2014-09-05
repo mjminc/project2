@@ -53,7 +53,7 @@ $(document).on('ready page:load', function() {
     $('#balance').html(compiledTemplate);
   });
 
-  // get messages on initial page load
+  // get  messages on initial page load
   $.when(getMessages(user_id, challenge_id)).done(function(result){
     console.log(result);
     var compiledTemplate = HandlebarsTemplates['message/messages']({result: result});
