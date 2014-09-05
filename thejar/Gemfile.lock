@@ -49,6 +49,11 @@ GEM
       execjs
     coffee-script-source (1.8.0)
     diff-lcs (1.2.5)
+    dotenv (0.11.1)
+      dotenv-deployment (~> 0.0.2)
+    dotenv-deployment (0.0.2)
+    dotenv-rails (0.11.1)
+      dotenv (= 0.11.1)
     erubis (2.7.0)
     execjs (2.2.1)
     ffaker (1.25.0)
@@ -189,6 +194,7 @@ DEPENDENCIES
   aws-sdk
   bcrypt (~> 3.1.7)
   coffee-rails (~> 4.0.0)
+  dotenv-rails
   ffaker
   figaro
   handlebars_assets
