@@ -13,12 +13,35 @@
   }
   .hero-title {
     position: absolute;
-    top: 12%;
+    top: 8%;
     left: 0;
     color: rgba(249, 191, 59, 1.0);
     text-shadow: 1px 1px 2px #222;
     font-size: 5em;
     padding: 1em;
     font-family: 'Changa One', sans-serif;
+    width: 100% !important;
   }
+}
+
+.sites.index .jumbotron {
+  background: url(http://media.indiatimes.in/media/content/2012/Dec/drinking_smoking_1354862172_1354862191_540x540.jpg) top left no-repeat;
+  background-size: cover;
+  height: 600px;
+  text-align: center;
+  color: #fff;
+  text-shadow: 1px 1px 2px #222;
+
+  h1 {
+    font-family: 'Changa One', sans-serif;
+    font-size: 6em;
+  }
+  p {
+    font-size: 2em;
+    margin-bottom: 3em;
+  }
+  a {
+    margin-right: 2em;
+  }
+
 }

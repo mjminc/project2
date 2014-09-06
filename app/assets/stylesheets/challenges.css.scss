@@ -88,12 +88,21 @@ h3.section-header {
       }
       .caught {
         transition: all 0.5s ease;
+        float: right;
       }
     }
   }
   &.isOwnerfalse .caught {
     display: none;
   }
+}
+.msg-text p {
+  width: 75%;
+  float:left;
+}
+.msg-text p.caught-message {
+  width: 20%;
+  float: right;
 }
 
 // message form

@@ -48,11 +48,12 @@ class MessagesController < ApplicationController
     challenge = Challenge.find_by_id(params[:challenge_id])
     c_amount = challenge.challenge_amount
     s_amount = challenge.supporter_amount
+    # binding.pry
     days_left = get_days_left(challenge.start_date, challenge.end_date)
     increment = get_balance_increment(c_amount, s_amount, days_left)
-    #
+
     challenge.update_attributes(challenge_amount: challenge.challenge_amount - increment)
-    # binding.pry
+
     if challenge.supporter_amount
       challenge.update_attributes(supporter_amount: challenge.supporter_amount + increment)
     else
@@ -75,9 +76,9 @@ class MessagesController < ApplicationController
 
   def get_balance_increment(c_amount, s_amount, days_left)
     if s_amount != nil
-      increment = (c_amount + s_amount) / (days_left / 2)
+      return increment = (c_amount + s_amount) / (days_left / 2)
     else
-      increment = c_amount / (days_left / 2)
+      return increment = c_amount / (days_left / 2)
     end
   end
 

@@ -54,12 +54,15 @@ class ChallengesController < ApplicationController
     new_challenge =params.require(:challenge).permit(:title,:charity_id,:start_date,:end_date,:status,:challenge_amount)
     phone_numbers = params[:phone_numbers].split(' ')
 
-    @challenge=Challenge.create(new_challenge)
+    @challenge = Challenge.create(new_challenge)
     puts @challenge.id
-    binding.pry
+
     @user = current_user
     @current_user = current_user
     @user.challenges << @challenge
+
+    user_challenge = UserChallenge.where({challenge_id: @challenge.id})
+    user_challenge[0].role = "challenger"
 
     is_new = true
     phone_numbers.each do |phone|
@@ -68,8 +71,9 @@ class ChallengesController < ApplicationController
       else
         is_new = true
       end
-      send_text_message(phone, @challenge_id, is_new)
+      send_text_message(phone, @challenge.id, is_new)
     end
+
     redirect_to "/users/#{@user.id}/challenges/#{@challenge.id}"
 
   end
@@ -119,14 +123,12 @@ class ChallengesController < ApplicationController
 
     @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
 
-    body = "You have been invited to join a challenge!  Go to http://localhost:3000/users/new?challenge_id=#{challenge_id}"
+    body = "You have been invited to join a challenge!  Go to http://thejarr.herokuapp.com/users/new?challenge_id=#{challenge_id}"
     if is_new
-      body = "You have been invited to join a challenge!  Go to http://localhost:3000/users/new?challenge_id=#{challenge_id}"
+      body = "You have been invited to join a challenge!  Go to http://thejarr.herokuapp.com/users/new?challenge_id=#{challenge_id}"
     else
-      body = "You have been invited to join a challenge!  Go to http://localhost:3000/login?challenge_id=#{challenge_id}"
+      body = "You have been invited to join a challenge!  Go to http://thejarr.herokuapp.com/login?challenge_id=#{challenge_id}"
     end
-
-    binding.pry
 
     @twilio_client.account.sms.messages.create(
       :from => "16502760630",
