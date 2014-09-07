@@ -1,6 +1,6 @@
 
 <div class="row">
-<div class="col-md-10 offset-2">
+<div class="col-md-8 offset-2">
 		<h2>
 			<% if @user.avatar_file_name != nil %>
 			<%= image_tag @user.avatar.url(:square) %>
@@ -24,6 +24,9 @@
 			<% else %>
 				<a href="/users/<%=@user.id%>/challenges/new">Create Challange</a>
 			<% end %>
+		</div>
+		<div class="col-md-2">
+			<%= link_to "Edit profile", edit_user_path(@user), class: "btn btn-success" %>
 		</div>
 	</div>
 </div>
