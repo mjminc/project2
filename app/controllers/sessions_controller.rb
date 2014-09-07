@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
       challenge = Challenge.find_by_id(challenge_id)
       user_challenge = UserChallenge.where(challenge_id: challenge_id, user_id: user.id)
 
-      if challenge != nil && user_challenge.size < 2
+      if challenge != nil && user_challenge.size < 1
         user.challenges << challenge
         user_challenge.first.role = "supporter"
         user_challenge.first.is_accepted = true
