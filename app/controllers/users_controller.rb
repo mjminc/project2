@@ -38,14 +38,10 @@ class UsersController < ApplicationController
         if challenge_id != nil && challenge_id != ''
           challenge = Challenge.find_by_id(challenge_id)
           user = User.find_by_email(new_user[:email])
-          # user.challenges << challenge
-          # user_challenge = UserChallenge.where(challenge_id: challenge.id, user_id: user.id)
 
-          # user_challenge[0].role = "supporter"
-          # user_challenge[0].is_accepted = true
         end
         binding.pry
-        redirect_to '/login?challenge_id=#{challenge_id}', :notice => "User Created!"
+        redirect_to "/login?challenge_id=#{challenge_id}", :notice => "User Created!"
       else
         flash.now[:notice]="Can't create user"
         @user = User.new
