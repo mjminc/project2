@@ -17,7 +17,7 @@
 				<ul>
 					<% @user.challenges.each do |challenge| %>
 						<li class="challenges">
-							<a class="chal" href="/users/<%= @user.id %>/challenges/<%= challenge.id%>" ><%= challenge.title %> <%= challenge.category %> <%= challenge.status %></a>
+							<a class="chal" href="/users/<%= @user.id %>/challenges/<%= challenge.id%>" ><%= challenge.title %> <%= challenge.category %> | <%= challenge.status %></a>
 						</li>
 					<% end%>
 				</ul>
