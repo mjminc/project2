@@ -14,7 +14,7 @@
   <a id="close-nav" class="toggle-nav" href="javascript:void(0);">&laquo; Menu</a>
   <div class="brand"><a href="/">The Jar</a></div>
     <% if session[:user_id]!=nil %>
-  <div class="user"> <%= @current_user.first_name %></div>
+  <div class="user">Logged in as <%= link_to @current_user.first_name, user_path(@current_user) %></div>
     <% end %>
   <ul>
     <li> <a href="/about">About</a></li>

@@ -3,9 +3,9 @@
 <div class="col-md-8 offset-2">
 		<h2>
 			<% if @user.avatar_file_name != nil %>
-			<%= image_tag @user.avatar.url(:square) %>
+				<%= image_tag @user.avatar.url(:square) %>
 			<% else %>
-			<img src="http://i488.photobucket.com/albums/rr242/tampa1_bucket/mr_t.jpg" alt="mr t">
+				<img src="http://i488.photobucket.com/albums/rr242/tampa1_bucket/mr_t.jpg" alt="mr t">
 			<% end %>
 			<span class="username"><%=@user.first_name %> <%=@user.last_name %></span>
 		</h2>
@@ -16,8 +16,8 @@
 			<h4>Challenges</h4>
 				<ul>
 					<% @user.challenges.each do |challenge| %>
-						<li class="challenges">
-							<a class="chal" href="/users/<%= @user.id %>/challenges/<%= challenge.id%>" ><%= challenge.title %> <%= challenge.category %> | <%= challenge.status %></a>
+						<li class="challenge <%= challenge.status %>">
+							<a class="chal" href="/users/<%= @user.id %>/challenges/<%= challenge.id%>" ><%= challenge.title %> <%= challenge.category %></a> | <span class="status"><%= challenge.status %></span>
 						</li>
 					<% end%>
 				</ul>
