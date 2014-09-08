@@ -144,12 +144,17 @@ $(document).on('ready page:load', function() {
         return $.getJSON(url, function() {});
       };
       var searchCharities = function(query) {
-        var url = 'https://api.justgiving.com/4f937edd/v1/charity/search?countryCode=USq=' + query;
+        var url = 'https://api.justgiving.com/4f937edd/v1/charity/search?countrycode=USq=' + query;
         return $.getJSON(url, function() {});
       };
 
       var getCharityByCatId = function(catId) {
         var url = 'https://api.justgiving.com/4f937edd/v1/charity/search?countryCode=US&categoryid=' + catId;
+        return $.getJSON(url, function() {});
+      };
+
+      var getCharity = function(charityId) {
+        var url = 'https://api.justgiving.com/4f937edd/v1/charity/search?countryCode=US&charityid=' + charityid;
         return $.getJSON(url, function() {});
       };
 
@@ -194,7 +199,11 @@ $(document).on('ready page:load', function() {
 
           updateCharityResults();
       });
+
+
     }
+
+
 
 });
 

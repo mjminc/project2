@@ -1,0 +1,22 @@
+// Colors
+$text-bg: rgba(197, 239, 247, 1.0); // hummingbird
+$divider: rgba(44, 62, 80, 1.0);
+
+$nav-bg: rgba(44, 62, 80, 1.0); // madison
+$nav-links: rgba(197, 239, 247, 1.0); // hummingbird
+$fail: rgba(231, 76, 60, 1.0); //cinnabar
+$success: rgba(77, 175, 124, 1.0); // ocean green
+
+
+// breakpoints
+@mixin breakpoint($point) {
+  @if $point == large {
+    @media (max-width: 1600px) { @content; }
+  }
+  @else if $point == medium {
+    @media (max-width: 1250px) { @content; }
+  }
+  @else if $point == small {
+    @media (max-width: 650px)  { @content; }
+  }
+}

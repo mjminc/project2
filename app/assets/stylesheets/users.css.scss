@@ -2,6 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import "bits.css.scss";
+
 .users.show {
   h2 {
     font-size: 3em;
@@ -11,6 +13,9 @@
     display: inline-block;
     margin-left: 1em;
   }
+}
+.users.show .row:first-of-type {
+  margin-top: 2em;
 }
 .users.show ul {
   list-style-type: none;
@@ -22,11 +27,24 @@
   h4 {
     margin-top: 2em;
   }
-  li.challenges {
+  li.challenge {
     display: block;
     background: #ccc;
     margin-bottom: 1em;
     padding: 1em;
     width: 100%;
+    &.open {
+      position: relative;
+      background: $text-bg;
+    }
+    &.fail {
+      background: $fail;
+    }
+    &.success {
+      background: $success;
+    }
+    .status {
+      font-style: oblique;
+    }
   }
 }
