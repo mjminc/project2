@@ -27,7 +27,6 @@
 
       <% if session[:user_id]!=nil %>
     <li><a href="/users/<%= @current_user.id %>">User Profile</a></li>
-    <li> <a href="/users/<%= @current_user.id %>/edit">Edit User</a></li>
     <li> <a href="/users/<%= @current_user.id %>/challenges/new">Create Challange</a></li>
     <li> <a href="/logout">Logout</a></li>
       <% end %>

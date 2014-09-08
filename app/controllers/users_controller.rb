@@ -9,8 +9,13 @@ class UsersController < ApplicationController
 
 
   def show
-    @user = User.find_by_id(params[:id])
-    @current_user = current_user
+
+    if session[:user_id] != nil
+      @user = User.find_by_id(params[:id])
+      @current_user = current_user
+    else
+      redirect_to login_path
+    end
   end
 
 
@@ -29,25 +34,15 @@ class UsersController < ApplicationController
   def create
 
     new_user = params[:user].permit(:email, :avatar, :password, :password_confirmation, :first_name, :last_name, :phone_number)
-
     challenge_id = params[:challenge]
     check_if_new_user = User.new(new_user)
 
       if check_if_new_user.save!
-
         if challenge_id != nil && challenge_id != ''
           challenge = Challenge.find_by_id(challenge_id)
           user = User.find_by_email(new_user[:email])
-          user.challenges << challenge
-          user_challenge = UserChallenge.where(challenge_id: challenge.id, user_id: user.id)
-
-          user_challenge[0].role = "supporter"
-          user_challenge[0].is_accepted = true
         end
-
-
-
-        redirect_to '/login', :notice => "User Created!"
+        redirect_to "/login?challenge_id=#{challenge_id}", :notice => "User Created!"
       else
         flash.now[:notice]="Can't create user"
         @user = User.new
@@ -55,11 +50,9 @@ class UsersController < ApplicationController
       end
   end
 
-
-
   def edit
+    @current_user = current_user
     find_user_id
-
     render :edit
   end
 
@@ -85,7 +78,7 @@ class UsersController < ApplicationController
 
     def find_user_id
       user_id = params[:id]
-      @user = User.find(user_id)
+      @user = User.find_by_id(user_id)
     end
 
 end
