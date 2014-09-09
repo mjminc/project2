@@ -12,8 +12,13 @@ RSpec.describe User, :type => :model do
     expect(subject.password.length).to eql(6)
   end
 
-  it "should be able to have a challenge" do
+  it "should not allow duplicate emails" do
+    user1 = FactoryGirl.create(:user)
+    user1.email = "email@email.com"
+    user2 = FactoryGirl.build(:user)
+    user2.email = "email@email.com"
 
+    expect(user2.save).to raise_error
   end
 
 end
