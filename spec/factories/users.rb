@@ -9,4 +9,6 @@ FactoryGirl.define do
     password pswrd
     password_confirmation pswrd
   end
+
+
 end
